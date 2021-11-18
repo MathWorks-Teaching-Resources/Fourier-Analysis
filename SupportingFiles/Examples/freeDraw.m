@@ -1,9 +1,16 @@
 function [x,y,pHandle,markerHandle] = freeDraw(src,event,UIFigure,...
-                                UIAxesHandle,color,closed,xmin,xmax,ymin,ymax)
+                                UIAxesHandle,color,closed,xmin,xmax,ymin,ymax,lw)
     % Allows the user to draw freely
-    % Wait until this is done
+    % Wait until this is done   
+    location = checkIfInFieldAxis(event,UIAxesHandle,xmin,xmax,ymin,ymax);
 
-    N = 10;
+    if(numel(location) < 2 || any(isnan(location)) )
+        x = [];
+        y = [];
+        pHandle = [];
+        markerHandle = [];
+        return
+    end
     
     % Clear the axes
     cla(UIAxesHandle)
@@ -13,15 +20,14 @@ function [x,y,pHandle,markerHandle] = freeDraw(src,event,UIFigure,...
     set(UIFigure,"Pointer","hand")
     origMotionFcn = UIFigure.WindowButtonMotionFcn;
     origButtonFcn = UIFigure.WindowButtonDownFcn;
-    
-    location = checkIfInFieldAxis(event,UIAxesHandle,xmin,xmax,ymin,ymax);
+
     x = location(1);
     y = location(2);
     drawing = true;
 
     hold(UIAxesHandle,"on")
         markerHandle = plot(UIAxesHandle,x,y,'o',"color",color,'markerfacecolor',color);
-        pHandle = plot(UIAxesHandle,x,y,'linewidth',2,"color",color);
+        pHandle = plot(UIAxesHandle,x,y,'linewidth',lw,"color",color);
     hold(UIAxesHandle,"off")
 
     UIFigure.WindowButtonMotionFcn = @addPoint;
