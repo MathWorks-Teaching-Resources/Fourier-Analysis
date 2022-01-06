@@ -55,6 +55,7 @@
 %   <td>
 %       <a href="matlab:run SinCosSeries.mlapp"><code>SinCosSeries.mlapp</code><br></a>
 %       <a href="matlab:run InteractiveFourierSeries.mlapp"><code>InteractiveFourierSeries.mlapp</code><br></a>
+%       <a href="matlab:run MagnitudePhase.mlapp"><code>MagnitudePhase.mlapp</code><br></a>
 %   </td>
 % </tr>
 % <tr>
