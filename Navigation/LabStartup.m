@@ -4,7 +4,5 @@
 %% Show the info script
 open("Overview.html")
 
-%% Start Simulink
-start_simulink 
 
 
