@@ -89,7 +89,22 @@
 %       </ul>
 %   </td>
 %   <td>
-%       <a href="matlab:run  .mlapp"><code> .mlapp</code><br></a>
+%   </td>
+% </tr>
+% <tr>
+%   <td>
+%       <b>Discrete Fourier Transform</b>
+%   	<ul style="margin-top:5px; margin-bottom:10px">
+%           <li>Interactive example: <a href="matlab:edit DiscreteFourierTransform.mlx;"><code>DiscreteFourierTransform.mlx</code></a></li>
+%       </ul>
+%       <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%   </td>
+%   <td>
+%   	<ul style="margin-top:5px; margin-bottom:10px">
+%           <li>LO 1</li>
+%       </ul>
+%   </td>
+%   <td>
 %   </td>
 % </tr>
 % </table>
