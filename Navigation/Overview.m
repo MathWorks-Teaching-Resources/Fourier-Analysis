@@ -37,14 +37,12 @@
 % <tr>
 %   <th>Interactive Examples</th>
 %   <th>Learning Goals</th>
-%   <th>Apps</th>
+%   <th>Lab Assignments</th>
 % </tr>
 % <tr>
 %   <td>
-%       <b>Fourier Series</b>
-%   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>Interactive example: <a href="matlab:edit FourierSeries.mlx;"><code>FourierSeries.mlx</code></a></li>
-%       </ul>
+%       <b>Fourier Series</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit FourierSeries.mlx;"><code>FourierSeries.mlx</code><br>
 %       <img src = "../Images/FourierSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
@@ -58,17 +56,13 @@
 %       </ul>
 %   </td>
 %   <td>
-%       <a href="matlab:run SinCosSeries.mlapp"><code>SinCosSeries.mlapp</code><br></a>
-%       <a href="matlab:run InteractiveFourierSeries.mlapp"><code>InteractiveFourierSeries.mlapp</code><br></a>
-%       <a href="matlab:run MagnitudePhase.mlapp"><code>MagnitudePhase.mlapp</code><br></a>
+%       lab.mlx
 %   </td>
 % </tr>
 % <tr>
 %   <td>
-%       <b>Complex Fourier Series</b>
-%   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>Interactive example: <a href="matlab:edit ComplexFourierSeries.mlx;"><code>ComplexFourierSeries.mlx</code></a></li>
-%       </ul>
+%       <b>Complex Fourier Series</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit ComplexFourierSeries.mlx;"><code>ComplexFourierSeries.mlx</code><br>
 %       <img src = "../Images/ComplexSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
@@ -80,15 +74,13 @@
 %       </ul>
 %   </td>
 %   <td>
-%       <a href="matlab:run ComplexFourierSeries.mlapp"><code>ComplexFourierSeries.mlapp</code><br></a>
+%       lab.mlx
 %   </td>
 % </tr>
 % <tr>
 %   <td>
-%       <b>Fourier Transform</b>
-%   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>Interactive example: <a href="matlab:edit FourierTransform.mlx;"><code>FourierTransform.mlx</code></a></li>
-%       </ul>
+%       <b>Fourier Transform</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit FourierTransform.mlx;"><code>FourierTransform.mlx</code><br>
 %       <img src = "../Images/FourierTransformCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
@@ -101,14 +93,13 @@
 %       </ul>
 %   </td>
 %   <td>
+%       lab.mlx
 %   </td>
 % </tr>
 % <tr>
 %   <td>
-%       <b>Discrete Fourier Transform</b>
-%   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>Interactive example: <a href="matlab:edit DiscreteFourierTransform.mlx;"><code>DiscreteFourierTransform.mlx</code></a></li>
-%       </ul>
+%       <b>Discrete Fourier Transform</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit DiscreteFourierTransform.mlx;"><code>DiscreteFourierTransform.mlx</code><br>
 %       <img src = "../Images/DFTCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
@@ -120,6 +111,41 @@
 %       </ul>
 %   </td>
 %   <td>
+%       lab.mlx
+%   </td>
+% </tr>
+% </table>
+% <br>
+% <h2> Apps </h2>
+% <table border=1 style="margin-left:20px; cellpadding:15px;">
+% <tr>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run SinCosSeries.mlapp;">
+%       Sine and Cosine Series app
+%       <br>
+%       <img src = "../Images/SinCosSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
+%   </td>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run InteractiveFourierSeries.mlapp;">
+%       Fourier Series app
+%       <br>
+%       <img src = "../Images/FourierSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
+%   </td>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run MagnitudePhase.mlapp;">
+%       Magnitude and Phase app
+%       <br>
+%       <img src = "../Images/MagPhaseApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
+%   </td>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run ComplexFourierSeries.mlapp;">
+%       Complex Fourier Series app
+%       <br>
+%       <img src = "../Images/ComplexSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
 %   </td>
 % </tr>
 % </table>
