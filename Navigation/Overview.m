@@ -23,13 +23,16 @@
 % tab and select <img src="../Images/add-ons.png" style="margin:0px;" height=12> <b> Add-Ons > Get Add-Ons</b>.
 % </li>
 % <li>
-% Get started with each topic by clicking the link in the table below to access the
-% interactive example. The instructions inside each live script will walk
+% Get started with each topic by clicking the link in the first column of the table below to access the
+% introductory example. The instructions inside each live script will walk
 % you through the live scripts and apps.
+% </li>
+% <li> 
+% Complete the lab assignment located in the last column of the table to apply the concepts.
 % </li>
 % </ol>
 % <h2> Products </h2>
-% MATLAB
+% MATLAB, Symbolic Math Toolbox
 % <br>
 % <br>
 % <h2> Modules </h2>
