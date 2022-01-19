@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Fourier Analysis</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-13"><meta name="DC.source" content="Overview.m"><style type="text/css">
+      --><title>Fourier Analysis</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-19"><meta name="DC.source" content="Overview.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -112,11 +112,16 @@ MATLAB
   	<ul style="margin-top:5px; margin-bottom:10px">
           <li>Interactive example: <a href="matlab:edit FourierSeries.mlx;"><code>FourierSeries.mlx</code></a></li>
       </ul>
-      <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+      <img src = "../Images/FourierSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
   </td>
   <td>
   	<ul style="margin-top:5px; margin-bottom:10px">
-          <li>LO 1</li>
+          <li>Compare signals in the time and frequency domains.</li>
+          <li>Analyze audio signals in the frequency domain.</li>
+          <li>Visualize Fourier series modes.</li>
+          <li>Describe how phase shift is represented in a Fourier series.</li>
+          <li>Compute the Fourier series of a periodic function.</li>
+          <li>Discuss magnitude and phase.</li>
       </ul>
   </td>
   <td>
@@ -131,11 +136,14 @@ MATLAB
   	<ul style="margin-top:5px; margin-bottom:10px">
           <li>Interactive example: <a href="matlab:edit ComplexFourierSeries.mlx;"><code>ComplexFourierSeries.mlx</code></a></li>
       </ul>
-      <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+      <img src = "../Images/ComplexSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
   </td>
   <td>
   	<ul style="margin-top:5px; margin-bottom:10px">
-          <li>LO 1</li>
+          <li>Recall Euler's formula.</li>
+          <li>Compare complex and real Fourier series.</li>
+          <li>Visualize complex Fourier series.</li>
+          <li>Construct functions using complex Fourier series.</li>
       </ul>
   </td>
   <td>
@@ -148,11 +156,15 @@ MATLAB
   	<ul style="margin-top:5px; margin-bottom:10px">
           <li>Interactive example: <a href="matlab:edit FourierTransform.mlx;"><code>FourierTransform.mlx</code></a></li>
       </ul>
-      <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+      <img src = "../Images/FourierTransformCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
   </td>
   <td>
   	<ul style="margin-top:5px; margin-bottom:10px">
-          <li>LO 1</li>
+          <li>Compare Fourier series to the Fourier transform.</li>
+          <li>Evaluate the Fourier transform of a function.</li>
+          <li>Represent signals using continuous functions.</li>
+          <li>Discuss carrier waves and modulation.</li>
+          <li>Compare functions in the time and frequency domains using the Fourier transform.</li>
       </ul>
   </td>
   <td>
@@ -164,11 +176,14 @@ MATLAB
   	<ul style="margin-top:5px; margin-bottom:10px">
           <li>Interactive example: <a href="matlab:edit DiscreteFourierTransform.mlx;"><code>DiscreteFourierTransform.mlx</code></a></li>
       </ul>
-      <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+      <img src = "../Images/DFTCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
   </td>
   <td>
   	<ul style="margin-top:5px; margin-bottom:10px">
-          <li>LO 1</li>
+          <li>Define the discrete Fourier transform (DFT).</li>
+          <li>Use the fft function to compute the DFT.</li>
+          <li>Relate the DFT to the Fourier transform.</li>
+          <li>Apply the DFT to analyze an audio signal.</li>
       </ul>
   </td>
   <td>
@@ -227,11 +242,16 @@ MATLAB
 %   	<ul style="margin-top:5px; margin-bottom:10px">
 %           <li>Interactive example: <a href="matlab:edit FourierSeries.mlx;"><code>FourierSeries.mlx</code></a></li>
 %       </ul>
-%       <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%       <img src = "../Images/FourierSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
 %   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>LO 1</li>
+%           <li>Compare signals in the time and frequency domains.</li>
+%           <li>Analyze audio signals in the frequency domain.</li>
+%           <li>Visualize Fourier series modes.</li>
+%           <li>Describe how phase shift is represented in a Fourier series.</li>
+%           <li>Compute the Fourier series of a periodic function.</li>
+%           <li>Discuss magnitude and phase.</li>
 %       </ul>
 %   </td>
 %   <td>
@@ -246,11 +266,14 @@ MATLAB
 %   	<ul style="margin-top:5px; margin-bottom:10px">
 %           <li>Interactive example: <a href="matlab:edit ComplexFourierSeries.mlx;"><code>ComplexFourierSeries.mlx</code></a></li>
 %       </ul>
-%       <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%       <img src = "../Images/ComplexSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
 %   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>LO 1</li>
+%           <li>Recall Euler's formula.</li>
+%           <li>Compare complex and real Fourier series.</li>
+%           <li>Visualize complex Fourier series.</li>
+%           <li>Construct functions using complex Fourier series.</li>
 %       </ul>
 %   </td>
 %   <td>
@@ -263,11 +286,15 @@ MATLAB
 %   	<ul style="margin-top:5px; margin-bottom:10px">
 %           <li>Interactive example: <a href="matlab:edit FourierTransform.mlx;"><code>FourierTransform.mlx</code></a></li>
 %       </ul>
-%       <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%       <img src = "../Images/FourierTransformCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
 %   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>LO 1</li>
+%           <li>Compare Fourier series to the Fourier transform.</li>
+%           <li>Evaluate the Fourier transform of a function.</li>
+%           <li>Represent signals using continuous functions.</li>
+%           <li>Discuss carrier waves and modulation.</li>
+%           <li>Compare functions in the time and frequency domains using the Fourier transform.</li>
 %       </ul>
 %   </td>
 %   <td>
@@ -279,11 +306,14 @@ MATLAB
 %   	<ul style="margin-top:5px; margin-bottom:10px">
 %           <li>Interactive example: <a href="matlab:edit DiscreteFourierTransform.mlx;"><code>DiscreteFourierTransform.mlx</code></a></li>
 %       </ul>
-%       <img src = "../Images/.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%       <img src = "../Images/DFTCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
 %   </td>
 %   <td>
 %   	<ul style="margin-top:5px; margin-bottom:10px">
-%           <li>LO 1</li>
+%           <li>Define the discrete Fourier transform (DFT).</li>
+%           <li>Use the fft function to compute the DFT.</li>
+%           <li>Relate the DFT to the Fourier transform.</li>
+%           <li>Apply the DFT to analyze an audio signal.</li>
 %       </ul>
 %   </td>
 %   <td>
