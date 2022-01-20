@@ -59,7 +59,7 @@
 %       </ul>
 %   </td>
 %   <td>
-%       lab.mlx
+%       <a href="matlab:edit Lab1_FourierSeries.mlx;">Lab1_FourierSeries.mlx</a>
 %   </td>
 % </tr>
 % <tr>
@@ -77,7 +77,7 @@
 %       </ul>
 %   </td>
 %   <td>
-%       lab.mlx
+%       <a href="matlab:edit Lab2_ComplexFourierSeries.mlx;">Lab2_ComplexFourierSeries.mlx</a>
 %   </td>
 % </tr>
 % <tr>
