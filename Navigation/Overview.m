@@ -96,7 +96,7 @@
 %       </ul>
 %   </td>
 %   <td>
-%       <a href="matlab:edit Lab3_FourierTransform.mlx;">Lab3_FourierTransform</a>
+%       <a href="matlab:edit Lab3_FourierTransform.mlx;">Lab3_FourierTransform.mlx</a>
 %   </td>
 % </tr>
 % <tr>
@@ -114,7 +114,7 @@
 %       </ul>
 %   </td>
 %   <td>
-%       <a href="matlab:edit Lab4_DFT.mlx;">Lab4_DFT</a>
+%       <a href="matlab:edit Lab4_DFT.mlx;">Lab4_DFT.mlx</a>
 %   </td>
 % </tr>
 % </table>
