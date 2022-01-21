@@ -4,7 +4,7 @@
 % <span style="font-family:Arial">
 % <span style="font-size:12pt">
 % <h2> Information </h2>
-% <description>
+% &lt; description>
 % <br>
 % <br>
 % The live script solutions are available upon instructor request. If you
@@ -96,7 +96,7 @@
 %       </ul>
 %   </td>
 %   <td>
-%       lab.mlx
+%       <a href="matlab:edit Lab3_FourierTransform.mlx;">Lab3_FourierTransform</a>
 %   </td>
 % </tr>
 % <tr>
@@ -114,7 +114,7 @@
 %       </ul>
 %   </td>
 %   <td>
-%       lab.mlx
+%       <a href="matlab:edit Lab4_DFT.mlx;">Lab4_DFT</a>
 %   </td>
 % </tr>
 % </table>
