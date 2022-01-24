@@ -3,95 +3,104 @@
 _Created with R2021b. Compatible with R2021b and later releases._  
 
 ## Description ##
-This curriculum module teaches Fourier analysis using interactive [live scripts](https://www.mathworks.com/products/matlab/live-editor.html) and [Simscape&trade;](https://www.mathworks.com/products/simscape.html) models. Essential topics such as mesh analysis, RLC circuits, and op amps (among others) are discussed. The materials contain two components for each topic: an introduction and a virtual lab. The introduction explains the technique and offers opportunities to develop intuition using simulation. In the labs, students apply their knowledge to analyze circuits, take measurements, and design circuits to meet requirements. Throughout the module, virtual analogs to standard instruments are used to familiarize students with standard measurement procedures. In the penultimate module, students measure the transient responses of overdamped, underdamped, and critically damped RLC circuits using a virtual signal generator and oscilloscope.
+This curriculum module teaches Fourier analysis using interactive [live scripts](https://www.mathworks.com/products/matlab/live-editor.html) and [MATLAB&reg; apps](https://www.mathworks.com/products/matlab/app-designer.html). The module is taught from a signal processing perspective at a level suitable for an introductory signals and systems course. In the first lesson, students use apps to visualize Fourier series and build intuition about the frequency domain. In subsequent lessons, students study complex Fourier series, Fourier transforms, and discrete Fourier transforms. As students progress, they transition from utilizing apps to writing their own code to analyze signals. Throughout the module, students apply Fourier techniques to analyze recorded audio signals.
 
-Get started with the DC Circuit Analysis curriculum module by downloading and unzipping the repository. Then, double-click the project .prj file inside MATLAB&reg;. From there, you can follow the landing page instructions to get started with the examples and labs.
+Each topic includes a lab that applies the concepts taught in the lesson. The solutions are available upon instructor request. If you would like to request solutions or have a question, contact the <a href="mailto:onlineteaching@mathworks.com">MathWorks online teaching team.</a>
+
+Get started with the Fourier Analysis curriculum module by downloading and unzipping the repository. Then, double-click the project .prj file inside MATLAB. From there, you can follow the landing page instructions to get started with the examples and labs.
 
 ## Details ##
 
 <table style="vertical-align:top">
   <tr>
-    <th width=350>Module</th>
+    <th>Module</th>
     <th>Learning Goals</th>
   </tr>
   <tr>
     <td>
-        <b>1. Mesh Analysis</b><br>
-        <img height="100" src="./Images/meshes.png" style="margin:5px" >
+        <b>1.Fourier Series</b><br><br>
+        <img width="500" src="./Images/FourierSeriesCover.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
-        <li>Use mesh analysis to compute currents through a linear circuit.</li>
-        <li>Solve the matrix form of circuit equations in MATLAB.</li>
-        <li>Model and analyze linear circuits in Simscape.</li>
+          <li>Compare signals in the time and frequency domains.</li>
+          <li>Analyze audio signals in the frequency domain.</li>
+          <li>Visualize Fourier series modes.</li>
+          <li>Describe how phase shift is represented in a Fourier series.</li>
+          <li>Compute the Fourier series of a periodic function.</li>
+          <li>Discuss magnitude and phase.</li>
         </ul>
     </td>
   </tr>
   <tr>
     <td>
-        <b>2. Nodal Analysis</b><br>
-        <img height="100" src="./Images/nodes.png" style="margin:5px" >
+        <b>2. Complex Fourier Series</b><br><br>
+        <img width="500" src="./Images/ComplexSeriesCover.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
-        <li>Use nodal analysis to compute voltages.</li>
-        <li>Solve the matrix form of circuit equations in MATLAB.</li>
-        <li>Model and analyze linear circuits in Simscape.</li>
+          <li>Recall Euler's formula.</li>
+          <li>Compare complex and real Fourier series.</li>
+          <li>Visualize complex Fourier series.</li>
+          <li>Construct functions using complex Fourier series.</li>
         </ul>
     </td>
   </tr>
   <tr>
     <td>
-        <b>3. Thevenin and Norton Equivalent Circuits</b><br>
-        <img height="100" src="./Images/TheveninNorton.png" style="margin:5px" >
+        <b>3. Fourier Transform</b><br><br>
+        <img  width="500" src="./Images/FourierTransformCover.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
-        <li>Explain Thevenin and Norton equivalent circuits.</li>
-        <li>Solve for Thevenin and Norton equivalents.</li>
-        <li>Compare circuits to their Thevenin and Norton equivalents.</li>
+          <li>Compare Fourier series to the Fourier transform.</li>
+          <li>Evaluate the Fourier transform of a function.</li>
+          <li>Represent signals using continuous functions.</li>
+          <li>Discuss carrier waves and modulation.</li>
+          <li>Compare functions in the time and frequency domains using the Fourier transform.</li>
         </ul>
     </td>
   </tr>
   <tr>
     <td>
-        <b>4. RC Circuits</b><br>
-        <img height="100" src="./Images/rccircuit.png" style="margin:5px" >
+        <b>4. Discrete Fourier Transform</b><br><br>
+        <img  width="500" src="./Images/DFTCover.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
-        <li>Simulate charging and discharging RC circuits.</li>
-        <li>Plot solutions of RC circuit differential equations.</li>
-        <li>Measure the time constant of an RC circuit.</li>
+          <li>Define the discrete Fourier transform (DFT).</li>
+          <li>Use the fft function to compute the DFT.</li>
+          <li>Relate the DFT to the Fourier transform.</li>
+          <li>Apply the DFT to analyze an audio signal.</li>
         </ul>
     </td>
   </tr>
+</table>
+
+## Apps ##
+<table border=1 style="margin-left:20px; cellpadding:15px;">
   <tr>
-    <td>
-        <b>5. RLC Circuits</b><br>
-        <img height="100" src="./Images/rlccircuit.png" style="margin:5px" >
+    <td style="Horizontal-alignment:center;">
+        Sine and Cosine Series app
+        <br>
+        <img src = "./Images/SinCosSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
-    <td>    
-        <ul>
-        <li>Compare the response of first and second order circuits.</li>
-        <li>Analyze a second order RLC circuit differential equation.</li>
-        <li>Solve for the natural frequency and damping in an RLC circuit.</li>
-        <li>Compare underdamped, overdamped, and critically damped circuits.</li>
-        </ul>
+    <td style="Horizontal-alignment:center;">
+        Fourier Series app
+        <br>
+        <img src = "./Images/FourierSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
   </tr>
   <tr>
-    <td>
-        <b>6. Op Amps</b><br>
-        <img height="100" src="./Images/opamps.png" style="margin:5px" >
+    <td style="Horizontal-alignment:center;">
+        Magnitude and Phase app
+        <br>
+        <img src = "./Images/MagPhaseApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
-    <td>    
-        <ul>
-        <li>Describe the open-loop behavior of an op amp.</li>
-        <li>Compare ideal and non-ideal op amp behavior.</li>
-        <li>Analyze negative feedback op amp circuits.</li>
-        <li>Design circuits using combinations of basic op amp circuits.</li>
-        </ul>
+    <td style="Horizontal-alignment:center;">
+        Complex Fourier Series app
+        <br>
+        <img src = "./Images/ComplexSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
   </tr>
 </table>
@@ -100,7 +109,7 @@ Get started with the DC Circuit Analysis curriculum module by downloading and un
 [MATLAB Onramp](https://www.mathworks.com/learn/tutorials/matlab-onramp.html) – a free two-hour introductory tutorial that teaches the essentials of MATLAB.
 
 ## Products ##
-MATLAB, Simulink&reg;, Simscape, Simscape Electrical&trade;, DSP System Toolbox&trade;
+MATLAB, Symbolic Math Toolbox&trade;
 
 ## License ##
 The license for this module is available in the [LICENSE.md](license.md) file in this GitHub repository.
@@ -110,7 +119,6 @@ The license for this module is available in the [LICENSE.md](license.md) file in
 * [Teach with MATLAB and Simulink](https://www.mathworks.com/academia/educators.html)
 * [MATLAB Grader](https://www.mathworks.com/products/matlab-grader.html)
 
-The lab solutions are available upon instructor request. If you would like to request solutions or have a question, contact the <a href="mailto:onlineteaching@mathworks.com">MathWorks online teaching team.</a>
 
 # #
 
