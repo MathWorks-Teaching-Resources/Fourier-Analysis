@@ -4,10 +4,21 @@
 % <span style="font-family:Arial">
 % <span style="font-size:12pt">
 % <h2> Information </h2>
-% &lt; description>
+% This curriculum module teaches Fourier analysis using interactive 
+% <a href="https://www.mathworks.com/products/matlab/live-editor.html">live scripts</a>
+% and <a href="https://www.mathworks.com/products/matlab/app-designer.html">MATLAB&reg; apps</a>. 
+% The module is taught from a signal processing perspective at a level 
+% suitable for an introductory signals and systems course. 
+% In the first lesson, students use apps to visualize Fourier series and
+% build intuition about the frequency domain. In subsequent lessons, 
+% students study complex Fourier series, Fourier transforms, and discrete 
+% Fourier transforms. As students progress, they transition from utilizing 
+% apps to writing their own code to analyze signals. Throughout the module, 
+% students apply Fourier techniques to analyze recorded audio signals.
 % <br>
 % <br>
-% The live script solutions are available upon instructor request. If you
+% Each topic includes a lab that applies the concepts taught in the lesson. 
+% The solutions are available upon instructor request. If you
 % would like to request solutions, find an issue,
 % or have a suggestion, email the MathWorks online teaching team at 
 % onlineteaching@mathworks.com
@@ -25,7 +36,7 @@
 % <li>
 % Get started with each topic by clicking the link in the first column of the table below to access the
 % introductory example. The instructions inside each live script will walk
-% you through the live scripts and apps.
+% you through the lesson.
 % </li>
 % <li> 
 % Complete the lab assignment located in the last column of the table to apply the concepts.
@@ -157,4 +168,4 @@
 % </span>
 % </html>
 % 
-% Copyright 2021 The MathWorks(TM), Inc.
+% Copyright 2022 The MathWorks(TM), Inc.

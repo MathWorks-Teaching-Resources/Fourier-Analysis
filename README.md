@@ -122,4 +122,4 @@ The license for this module is available in the [LICENSE.md](license.md) file in
 
 # #
 
-_Copyright 2021 The MathWorks, Inc._
+_Copyright 2022 The MathWorks, Inc._
