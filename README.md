@@ -81,24 +81,24 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
 <table border=1 style="margin-left:20px; cellpadding:15px;">
   <tr>
     <td style="Horizontal-alignment:center;">
-        Sine and Cosine Series app
+        Sine and Cosine Series
         <br>
         <img src = "./Images/SinCosSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
     <td style="Horizontal-alignment:center;">
-        Fourier Series app
+        Fourier Series
         <br>
         <img src = "./Images/FourierSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
   </tr>
   <tr>
     <td style="Horizontal-alignment:center;">
-        Magnitude and Phase app
+        Magnitude and Phase
         <br>
         <img src = "./Images/MagPhaseApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
     <td style="Horizontal-alignment:center;">
-        Complex Fourier Series app
+        Complex Fourier Series
         <br>
         <img src = "./Images/ComplexSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
