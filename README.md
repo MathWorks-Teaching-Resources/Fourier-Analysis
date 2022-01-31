@@ -67,7 +67,7 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
     </td>
     <td>    
         <ul>
-          <li>Define the discrete Fourier transform (DFT).</li>
+          <li>Plot the discrete Fourier transform (DFT).</li>
           <li>Use the fft function to compute the DFT.</li>
           <li>Relate the DFT to the Fourier transform.</li>
           <li>Apply the DFT to analyze an audio signal.</li>
