@@ -65,7 +65,6 @@
 %           <li>Analyze audio signals in the frequency domain.</li>
 %           <li>Visualize Fourier series modes.</li>
 %           <li>Describe how phase shift is represented in a Fourier series.</li>
-%           <li>Compute the Fourier series of a periodic function.</li>
 %           <li>Discuss magnitude and phase.</li>
 %       </ul>
 %   </td>
