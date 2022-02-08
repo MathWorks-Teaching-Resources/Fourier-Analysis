@@ -18,7 +18,7 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
   </tr>
   <tr>
     <td>
-        <b>1.Fourier Series</b><br><br>
+        <b>1. Fourier Series</b><br><br>
         <img width="500" src="./Images/FourierSeriesCover.png" style="margin:10px" >
     </td>
     <td>    
