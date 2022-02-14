@@ -1,4 +1,4 @@
-# Fourier Analysis [![View Fourier Analysis on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/)  
+# Fourier Analysis [![View Fourier Analysis on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/106725-fourier-analysis)  
 **Curriculum Module**  
 _Created with R2021b. Compatible with R2021b and later releases._  
 
