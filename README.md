@@ -19,7 +19,7 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
   <tr>
     <td>
         <b>1. Fourier Series</b><br><br>
-        <img width="500" src="./Images/FourierSeriesCover.png" style="margin:10px" >
+        <img width="500" src="https://user-images.githubusercontent.com/81383420/153870401-d2cc8b7c-53af-4874-8cff-6ec1dc5567ae.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
@@ -34,7 +34,7 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
   <tr>
     <td>
         <b>2. Complex Fourier Series</b><br><br>
-        <img width="500" src="./Images/ComplexSeriesCover.png" style="margin:10px" >
+        <img width="500" src="https://user-images.githubusercontent.com/81383420/153870397-04c2cedc-afab-4251-b797-3098edfe6b53.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
@@ -48,7 +48,7 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
   <tr>
     <td>
         <b>3. Fourier Transform</b><br><br>
-        <img  width="500" src="./Images/FourierTransformCover.png" style="margin:10px" >
+        <img  width="500" src="https://user-images.githubusercontent.com/81383420/153870404-445292ef-a744-48c6-98f5-b8e1d58f49b6.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
@@ -63,7 +63,7 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
   <tr>
     <td>
         <b>4. Discrete Fourier Transform</b><br><br>
-        <img  width="500" src="./Images/DFTCover.png" style="margin:10px" >
+        <img  width="500" src="https://user-images.githubusercontent.com/81383420/153870398-9712dc2d-345f-48ca-ae03-fd0c49906ae7.png" style="margin:10px" >
     </td>
     <td>    
         <ul>
@@ -82,24 +82,24 @@ Get started with the Fourier Analysis curriculum module by downloading and unzip
     <td style="Horizontal-alignment:center;">
         Sine and Cosine Series
         <br>
-        <img src = "./Images/SinCosSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
+        <img src = "https://user-images.githubusercontent.com/81383420/153870409-f2e613ec-18cf-4c34-b93c-4ff0d3ae8312.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
     <td style="Horizontal-alignment:center;">
         Fourier Series
         <br>
-        <img src = "./Images/FourierSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
+        <img src = "https://user-images.githubusercontent.com/81383420/153870399-60be6f16-0e65-4862-b884-3debf4e1a176.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
   </tr>
   <tr>
     <td style="Horizontal-alignment:center;">
         Magnitude and Phase
         <br>
-        <img src = "./Images/MagPhaseApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
+        <img src = "https://user-images.githubusercontent.com/81383420/153870407-b25ea6e8-b517-4614-bc37-78301628a504.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
     <td style="Horizontal-alignment:center;">
         Complex Fourier Series
         <br>
-        <img src = "./Images/ComplexSeriesApp.png" width=300 style="margin-top:5px; margin-bottom:0px;">
+        <img src = "https://user-images.githubusercontent.com/81383420/153870396-03ce417a-0b6a-4f1a-b6e2-13052673de4e.png" width=300 style="margin-top:5px; margin-bottom:0px;">
     </td>
   </tr>
 </table>
