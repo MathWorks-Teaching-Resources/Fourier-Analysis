@@ -1,0 +1,409 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Fourier Analysis</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-31"><meta name="DC.source" content="Overview.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Fourier Analysis</h1><p>
+<span style="font-family:Arial">
+<span style="font-size:12pt">
+<h2> Information </h2>
+This curriculum module teaches Fourier analysis using interactive
+<a href="https://www.mathworks.com/products/matlab/live-editor.html">live scripts</a>
+and <a href="https://www.mathworks.com/products/matlab/app-designer.html">MATLAB&reg; apps</a>.
+The module is taught from a signal processing perspective at a level
+suitable for an introductory signals and systems course.
+In the first lesson, students use apps to visualize Fourier series and
+build intuition about the frequency domain. In subsequent lessons,
+students study complex Fourier series, Fourier transforms, and discrete
+Fourier transforms. As students progress, they transition from utilizing
+apps to writing their own code to analyze signals. Throughout the module,
+students apply Fourier techniques to analyze recorded audio signals.
+<br>
+<br>
+Each topic includes a lab that applies the concepts taught in the lesson.
+The solutions are available upon instructor request. If you
+would like to request solutions, find an issue,
+or have a suggestion, email the MathWorks online teaching team at
+onlineteaching@mathworks.com
+<br>
+<br>
+<h2> Getting Started </h2>
+<ol>
+<li>
+Make sure that you have all the required products (listed below)
+installed. If you are missing a product, add it using the
+<a href="https://www.mathworks.com/products/matlab/add-on-explorer.html">
+Add-On Explorer.</a> To install an add-on, go to the <b>Home</b>
+tab and select <img src="../Images/add-ons.png" style="margin:0px;" height=12> <b> Add-Ons > Get Add-Ons</b>.
+</li>
+<li>
+Get started with each topic by clicking the link in the first column of the table below to access the
+introductory example. The instructions inside each live script will walk
+you through the lesson.
+</li>
+<li>
+Complete the lab assignment located in the last column of the table to apply the concepts.
+</li>
+</ol>
+<h2> Products </h2>
+MATLAB, Symbolic Math Toolbox
+<br>
+<br>
+<h2> Modules </h2>
+<table border=1 style="margin-left:20px; cellpadding:15px;">
+<tr>
+  <th>Interactive Examples</th>
+  <th>Learning Goals</th>
+  <th>Lab Assignments</th>
+</tr>
+<tr>
+  <td>
+      <b>Fourier Series</b><br>
+          &nbsp;&nbsp;<a href="matlab:edit FourierSeries.mlx;"><code>FourierSeries.mlx</code><br>
+      <img src = "../Images/FourierSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+  </td>
+  <td>
+  	<ul style="margin-top:5px; margin-bottom:10px">
+          <li>Compare signals in the time and frequency domains.</li>
+          <li>Analyze audio signals in the frequency domain.</li>
+          <li>Visualize Fourier series modes.</li>
+          <li>Describe how phase shift is represented in a Fourier series.</li>
+          <li>Discuss magnitude and phase.</li>
+      </ul>
+  </td>
+  <td>
+      <a href="matlab:edit Lab1_FourierSeries.mlx;">Lab1_FourierSeries.mlx</a>
+  </td>
+</tr>
+<tr>
+  <td>
+      <b>Complex Fourier Series</b><br>
+          &nbsp;&nbsp;<a href="matlab:edit ComplexFourierSeries.mlx;"><code>ComplexFourierSeries.mlx</code><br>
+      <img src = "../Images/ComplexSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+  </td>
+  <td>
+  	<ul style="margin-top:5px; margin-bottom:10px">
+          <li>Recall Euler's formula.</li>
+          <li>Compare complex and real Fourier series.</li>
+          <li>Visualize complex Fourier series.</li>
+          <li>Construct functions using complex Fourier series.</li>
+      </ul>
+  </td>
+  <td>
+      <a href="matlab:edit Lab2_ComplexFourierSeries.mlx;">Lab2_ComplexFourierSeries.mlx</a>
+  </td>
+</tr>
+<tr>
+  <td>
+      <b>Fourier Transform</b><br>
+          &nbsp;&nbsp;<a href="matlab:edit FourierTransform.mlx;"><code>FourierTransform.mlx</code><br>
+      <img src = "../Images/FourierTransformCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+  </td>
+  <td>
+  	<ul style="margin-top:5px; margin-bottom:10px">
+          <li>Compare Fourier series to the Fourier transform.</li>
+          <li>Evaluate the Fourier transform of a function.</li>
+          <li>Represent signals using continuous functions.</li>
+          <li>Discuss carrier waves and modulation.</li>
+          <li>Compare functions in the time and frequency domains using the Fourier transform.</li>
+      </ul>
+  </td>
+  <td>
+      <a href="matlab:edit Lab3_FourierTransform.mlx;">Lab3_FourierTransform.mlx</a>
+  </td>
+</tr>
+<tr>
+  <td>
+      <b>Discrete Fourier Transform</b><br>
+          &nbsp;&nbsp;<a href="matlab:edit DiscreteFourierTransform.mlx;"><code>DiscreteFourierTransform.mlx</code><br>
+      <img src = "../Images/DFTCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+  </td>
+  <td>
+  	<ul style="margin-top:5px; margin-bottom:10px">
+          <li>Plot the discrete Fourier transform (DFT).</li>
+          <li>Use the fft function to compute the DFT.</li>
+          <li>Relate the DFT to the Fourier transform.</li>
+          <li>Apply the DFT to analyze an audio signal.</li>
+      </ul>
+  </td>
+  <td>
+      <a href="matlab:edit Lab4_DFT.mlx;">Lab4_DFT.mlx</a>
+  </td>
+</tr>
+</table>
+<br>
+<h2> Apps </h2>
+<table border=1 style="margin-left:20px; cellpadding:15px;">
+<tr>
+  <td style="Horizontal-alignment:center;">
+      <a href="matlab:run SinCosSeries.mlapp;">
+      Sine and Cosine Series app
+      <br>
+      <img src = "../Images/SinCosSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+      </a>
+  </td>
+  <td style="Horizontal-alignment:center;">
+      <a href="matlab:run InteractiveFourierSeries.mlapp;">
+      Fourier Series app
+      <br>
+      <img src = "../Images/FourierSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+      </a>
+  </td>
+  <td style="Horizontal-alignment:center;">
+      <a href="matlab:run MagnitudePhase.mlapp;">
+      Magnitude and Phase app
+      <br>
+      <img src = "../Images/MagPhaseApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+      </a>
+  </td>
+  <td style="Horizontal-alignment:center;">
+      <a href="matlab:run ComplexFourierSeries.mlapp;">
+      Complex Fourier Series app
+      <br>
+      <img src = "../Images/ComplexSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+      </a>
+  </td>
+</tr>
+</table>
+<br>
+</span>
+</span>
+</p><p>Copyright 2022 The MathWorks&#8482;, Inc.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Fourier Analysis
+%
+% <html>
+% <span style="font-family:Arial">
+% <span style="font-size:12pt">
+% <h2> Information </h2>
+% This curriculum module teaches Fourier analysis using interactive 
+% <a href="https://www.mathworks.com/products/matlab/live-editor.html">live scripts</a>
+% and <a href="https://www.mathworks.com/products/matlab/app-designer.html">MATLAB&reg; apps</a>. 
+% The module is taught from a signal processing perspective at a level 
+% suitable for an introductory signals and systems course. 
+% In the first lesson, students use apps to visualize Fourier series and
+% build intuition about the frequency domain. In subsequent lessons, 
+% students study complex Fourier series, Fourier transforms, and discrete 
+% Fourier transforms. As students progress, they transition from utilizing 
+% apps to writing their own code to analyze signals. Throughout the module, 
+% students apply Fourier techniques to analyze recorded audio signals.
+% <br>
+% <br>
+% Each topic includes a lab that applies the concepts taught in the lesson. 
+% The solutions are available upon instructor request. If you
+% would like to request solutions, find an issue,
+% or have a suggestion, email the MathWorks online teaching team at 
+% onlineteaching@mathworks.com
+% <br>
+% <br>
+% <h2> Getting Started </h2>
+% <ol>
+% <li>
+% Make sure that you have all the required products (listed below)
+% installed. If you are missing a product, add it using the 
+% <a href="https://www.mathworks.com/products/matlab/add-on-explorer.html">
+% Add-On Explorer.</a> To install an add-on, go to the <b>Home</b>
+% tab and select <img src="../Images/add-ons.png" style="margin:0px;" height=12> <b> Add-Ons > Get Add-Ons</b>.
+% </li>
+% <li>
+% Get started with each topic by clicking the link in the first column of the table below to access the
+% introductory example. The instructions inside each live script will walk
+% you through the lesson.
+% </li>
+% <li> 
+% Complete the lab assignment located in the last column of the table to apply the concepts.
+% </li>
+% </ol>
+% <h2> Products </h2>
+% MATLAB, Symbolic Math Toolbox
+% <br>
+% <br>
+% <h2> Modules </h2>
+% <table border=1 style="margin-left:20px; cellpadding:15px;">
+% <tr>
+%   <th>Interactive Examples</th>
+%   <th>Learning Goals</th>
+%   <th>Lab Assignments</th>
+% </tr>
+% <tr>
+%   <td>
+%       <b>Fourier Series</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit FourierSeries.mlx;"><code>FourierSeries.mlx</code><br>
+%       <img src = "../Images/FourierSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%   </td>
+%   <td>
+%   	<ul style="margin-top:5px; margin-bottom:10px">
+%           <li>Compare signals in the time and frequency domains.</li>
+%           <li>Analyze audio signals in the frequency domain.</li>
+%           <li>Visualize Fourier series modes.</li>
+%           <li>Describe how phase shift is represented in a Fourier series.</li>
+%           <li>Discuss magnitude and phase.</li>
+%       </ul>
+%   </td>
+%   <td>
+%       <a href="matlab:edit Lab1_FourierSeries.mlx;">Lab1_FourierSeries.mlx</a>
+%   </td>
+% </tr>
+% <tr>
+%   <td>
+%       <b>Complex Fourier Series</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit ComplexFourierSeries.mlx;"><code>ComplexFourierSeries.mlx</code><br>
+%       <img src = "../Images/ComplexSeriesCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%   </td>
+%   <td>
+%   	<ul style="margin-top:5px; margin-bottom:10px">
+%           <li>Recall Euler's formula.</li>
+%           <li>Compare complex and real Fourier series.</li>
+%           <li>Visualize complex Fourier series.</li>
+%           <li>Construct functions using complex Fourier series.</li>
+%       </ul>
+%   </td>
+%   <td>
+%       <a href="matlab:edit Lab2_ComplexFourierSeries.mlx;">Lab2_ComplexFourierSeries.mlx</a>
+%   </td>
+% </tr>
+% <tr>
+%   <td>
+%       <b>Fourier Transform</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit FourierTransform.mlx;"><code>FourierTransform.mlx</code><br>
+%       <img src = "../Images/FourierTransformCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%   </td>
+%   <td>
+%   	<ul style="margin-top:5px; margin-bottom:10px">
+%           <li>Compare Fourier series to the Fourier transform.</li>
+%           <li>Evaluate the Fourier transform of a function.</li>
+%           <li>Represent signals using continuous functions.</li>
+%           <li>Discuss carrier waves and modulation.</li>
+%           <li>Compare functions in the time and frequency domains using the Fourier transform.</li>
+%       </ul>
+%   </td>
+%   <td>
+%       <a href="matlab:edit Lab3_FourierTransform.mlx;">Lab3_FourierTransform.mlx</a>
+%   </td>
+% </tr>
+% <tr>
+%   <td>
+%       <b>Discrete Fourier Transform</b><br>
+%           &nbsp;&nbsp;<a href="matlab:edit DiscreteFourierTransform.mlx;"><code>DiscreteFourierTransform.mlx</code><br>
+%       <img src = "../Images/DFTCover.png" height=100 style="margin-top:5px; margin-bottom:0px"></a>
+%   </td>
+%   <td>
+%   	<ul style="margin-top:5px; margin-bottom:10px">
+%           <li>Plot the discrete Fourier transform (DFT).</li>
+%           <li>Use the fft function to compute the DFT.</li>
+%           <li>Relate the DFT to the Fourier transform.</li>
+%           <li>Apply the DFT to analyze an audio signal.</li>
+%       </ul>
+%   </td>
+%   <td>
+%       <a href="matlab:edit Lab4_DFT.mlx;">Lab4_DFT.mlx</a>
+%   </td>
+% </tr>
+% </table>
+% <br>
+% <h2> Apps </h2>
+% <table border=1 style="margin-left:20px; cellpadding:15px;">
+% <tr>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run SinCosSeries.mlapp;">
+%       Sine and Cosine Series app
+%       <br>
+%       <img src = "../Images/SinCosSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
+%   </td>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run InteractiveFourierSeries.mlapp;">
+%       Fourier Series app
+%       <br>
+%       <img src = "../Images/FourierSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
+%   </td>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run MagnitudePhase.mlapp;">
+%       Magnitude and Phase app
+%       <br>
+%       <img src = "../Images/MagPhaseApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
+%   </td>
+%   <td style="Horizontal-alignment:center;">
+%       <a href="matlab:run ComplexFourierSeries.mlapp;">
+%       Complex Fourier Series app
+%       <br>
+%       <img src = "../Images/ComplexSeriesApp.png" height=150 style="margin-top:5px; margin-bottom:0px">
+%       </a>
+%   </td>
+% </tr>
+% </table>
+% <br>
+% </span>
+% </span>
+% </html>
+% 
+% Copyright 2022 The MathWorks(TM), Inc.
+
+##### SOURCE END #####
+--></body></html>
