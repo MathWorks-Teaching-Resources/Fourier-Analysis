@@ -1,0 +1,9 @@
+stages:         
+  - test
+
+matlab-test-job:   
+  tags: 
+    - matlab
+  stage: test
+  script:
+    - matlab -batch "openProject('FourierAnalysis.prj'); results = runtests('IncludeSubfolders', true); disp(table(results)); assertSuccess(results);"
