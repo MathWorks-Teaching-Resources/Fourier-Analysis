@@ -1,7 +1,12 @@
 function OpenOverview
-    % Open the overview file
-    open("Overview.html")
-    
-    % Close the current script
-    close(matlab.desktop.editor.getActive)
+curFile = matlab.desktop.editor.getActive;
+if isMATLABReleaseOlderThan("R2023b")
+    open("Navigation2.mlx")
+else
+    open("Navigation.mlx")
+end
+navFile = matlab.desktop.editor.getActive;
+if string(curFile.Filename) ~= string(navFile.Filename)
+    close(curFile)
+end
 end
