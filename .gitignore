@@ -10,11 +10,12 @@
 # MATLAB Drive
 *.MATLABDriveTag
 
-# Derived content-obscured files
+# Compiled files
+*.mex*
 *.p
 
-# Compiled MEX files
-*.mex*
+# Compressed files
+*.zip
 
 # Packaged app and toolbox files
 *.mlappinstall
@@ -26,13 +27,22 @@
 # Generated helpsearch folders
 helpsearch*/
 
-# Code generation folders
+# Defined Simulink cache folder
+Utilities/SimulinkCache/*
+
+# Standard code generation folders
 slprj/
 sccprj/
 codegen/
 
+# Code generation file
+*.eep
+*.elf
+*.hex
+*.bin
+
 # Cache files
 *.slxc
 
-# Cloud based storage dotfile
-.MATLABDriveTag
+# Project settings
+Utilities/ProjectSettings.mat
