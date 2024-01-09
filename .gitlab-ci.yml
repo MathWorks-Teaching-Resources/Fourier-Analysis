@@ -1,0 +1,98 @@
+stages:         
+# Set up two testing paths
+  - setup
+  - test
+  - deploy
+  - release
+
+setup-job:
+    tags:
+      - matlab
+    stage: setup
+    script:
+      - cd ..
+      - if (test-path utilities) { rm -r -force utilities }
+      - git clone git@insidelabs-git.mathworks.com:modular-curriculum-content/utilities.git
+      - cd $CI_PROJECT_NAME 
+    allow_failure: false
+
+
+smoke-test:
+# Smoke tests should run all the time
+    tags:
+    # Add additional tags like (e.g. - arduino) as required
+    # Make sure that the runner you plan to use matches the tags
+      - matlab
+    stage: test
+    script: 
+      - matlab -batch "openProject(pwd);RunAllTests(true)"
+    when: always
+    allow_failure: true
+    artifacts:
+      paths:
+        - public/*
+      expire_in: 1 years
+
+pages:
+    tags:
+      - matlab
+    stage: deploy
+    script:
+      - echo 'Deploying pages'
+    artifacts:
+        paths:
+            - public
+
+smoke-test-solution:
+    tags:
+      - matlab
+    stage: release
+    script: 
+      - matlab -batch "proj = openProject(pwd); 
+        addpath(genpath(proj.RootFolder));
+        results = runtests(fullfile('InternalFiles','Tests','CI','SolnSmokeTests.m'));
+        disp(table(results)); assertSuccess(results);"
+    rules:
+# This test should always run when merging to main
+# And be available for manual running on any push
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+        when: always
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != $CI_DEFAULT_BRANCH
+        when: manual
+    allow_failure: true
+        
+file-test:   
+    tags:
+      - matlab
+    stage: release
+    script: 
+      - matlab -batch "proj = openProject(pwd); 
+        addpath(proj.RootFolder+'/InternalFiles/Tests/CI');
+        results = runtests('OpenCloseFileTest.m');
+        disp(table(results)); assertSuccess(results);"
+    rules:
+# This test should always run when merging to main
+# And be available for manual running on any push
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+        when: always
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != $CI_DEFAULT_BRANCH
+        when: manual
+    allow_failure: true
+
+release-testing:
+    tags:
+      - matlab
+    stage: release
+    script: 
+      - matlab -batch "proj = openProject(pwd); 
+        cd ..;
+        addpath(genpath(fullfile('utilities','TestingResources')));
+        runCMTests"
+    rules:
+# This test should always run when merging to main
+# And be available for manual running on any push
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+        when: always
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != $CI_DEFAULT_BRANCH
+        when: manual
+    allow_failure: true
