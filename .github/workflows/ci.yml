@@ -1,0 +1,81 @@
+name: MATLAB Build
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ release ]
+  pull_request:
+    branches: [ release ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy: 
+      fail-fast: false
+      matrix:
+        MATLABVersion: [R2021a,R2021b,R2022a,R2022b,R2023a,R2023b]
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository
+      - uses: actions/checkout@v3
+      
+      # Sets up MATLAB
+      - name: Setup MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          release: ${{ matrix.MATLABVersion }}
+
+      # Run all the tests
+      - name: Run SmokeTests
+        uses: matlab-actions/run-command@v1
+        with:
+          command: openProject(pwd); RunAllTests; 
+
+      # Upload the test results as artifact
+      - name: Upload TestResults
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: TestResults
+          path: ./SoftwareTests/TestResults_${{ matrix.MATLABVersion }}.txt
+
+  badge:
+    if: ${{ always() }}
+    needs: [test]
+    strategy: 
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps: 
+
+      # Checks-out your repository
+      - uses: actions/checkout@v3
+      
+      # Sets up R2023b
+      - name: Setup MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          release: R2023b
+  
+      # Download the test results from artifact
+      - name: Download TestResults
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: TestResults
+          path: ./SoftwareTests/
+
+      # Create the test results badge
+      - name: Run CreateBadge
+        uses: matlab-actions/run-command@v1
+        with:
+          command: openProject(pwd); CreateBadge;
+
+      # Commit the JSON for the MATLAB releases badge 
+      - name: Commit changed files
+        continue-on-error: true
+        run: |
+          git config user.name "${{ github.workflow }} by ${{ github.actor }}"
+          git config user.email "<>"
+          git pull
+          git add Images/TestedWith.json
+          git commit Images/TestedWith.json -m "Update CI badges ${{  github.ref_name }}"
+          git fetch
+          git push

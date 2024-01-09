@@ -2,6 +2,7 @@ stages:
 # Set up two testing paths
   - setup
   - test
+  - deploy
   - release
 
 setup-job:
@@ -24,11 +25,23 @@ smoke-test:
       - matlab
     stage: test
     script: 
-      - matlab -batch "openProject(pwd); 
-        results = runtests(fullfile('SoftwareTests','SmokeTests.m'));
-        disp(table(results)); assertSuccess(results);"
+      - matlab -batch "openProject(pwd);RunAllTests(true)"
     when: always
     allow_failure: true
+    artifacts:
+      paths:
+        - public/*
+      expire_in: 1 years
+
+pages:
+    tags:
+      - matlab
+    stage: deploy
+    script:
+      - echo 'Deploying pages'
+    artifacts:
+        paths:
+            - public
 
 smoke-test-solution:
     tags:
