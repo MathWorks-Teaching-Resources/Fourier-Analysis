@@ -58,6 +58,7 @@ classdef SmokeTests < matlab.unittest.TestCase
                 run(fullfile("Scripts",Filename));
             catch ME
                 testCase.verifyTrue(false,ME.message);
+                disp(struct2table(ME.stack))
             end
             
             % Log the opened figures to the test reports
