@@ -57,7 +57,7 @@ classdef SmokeTests < matlab.unittest.TestCase
             try
                 run(fullfile("Scripts",Filename));
             catch ME
-                if strcomp(ME.stack(1).name ,'readaudio')
+                if strcmp(ME.stack(1).name ,'readaudio')
                     testCase.verifyTrue(true,"Can't read audio in GitHub test");
                 else
                     testCase.verifyTrue(false,ME.message);
