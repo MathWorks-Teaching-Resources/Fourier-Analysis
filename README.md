@@ -64,25 +64,25 @@ MATLAB®, Symbolic Math Toolbox™
 
  *If you are viewing this in a version of MATLAB prior to R2023b, you can view the learning outcomes for each script* [*here*](https://www.mathworks.com/matlabcentral/fileexchange/106725-fourier-analysis)
 
-## [**FourierSeries.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=FourierSeries.mlx)
+## [**FourierSeries.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/FourierSeries.mlx)
 |  | **In this script, students will...** | **Lab Assignments**  |
 | :-- | :-- | :-- |
-| <img src="Images/FourierSeriesCover2.png" width="267" alt="FourierSeriesCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab1\_FourierSeries.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Script/Lab1_FourierSeries.mlx)  |
+| <img src="Images/FourierSeriesCover2.png" width="267" alt="FourierSeriesCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab1\_FourierSeries.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab1_FourierSeries.mlx)  |
 
-## [**ComplexFourierSeries.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=ComplexFourierSeries.mlx)
+## [**ComplexFourierSeries.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/ComplexFourierSeries.mlx)
 |  | **In this script, students will...** | **Lab Assignments**  |
 | :-- | :-- | :-- |
-| <img src="Images/ComplexSeriesCover2.png" width="267" alt="ComplexSeriesCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab2\_ComplexFourierSeries.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Script/Lab2_ComplexFourierSeries.mlx)  |
+| <img src="Images/ComplexSeriesCover2.png" width="267" alt="ComplexSeriesCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab2\_ComplexFourierSeries.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab2_ComplexFourierSeries.mlx)  |
 
-## [**FourierTransform.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=FourierTransform.mlx)
+## [**FourierTransform.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/FourierTransform.mlx)
 |  | **In this script, students will...** | **Lab Assignments**  |
 | :-- | :-- | :-- |
-| <img src="Images/FourierTransformCover2.png" width="267" alt="FourierTransformCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab3\_FourierTransform.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Script/Lab3_FourierTransform.mlx)  |
+| <img src="Images/FourierTransformCover2.png" width="267" alt="FourierTransformCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab3\_FourierTransform.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab3_FourierTransform.mlx)  |
 
-## [**DiscreteFourierTransform.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=DiscreteFourierTransform.mlx)
+## [**DiscreteFourierTransform.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/DiscreteFourierTransform.mlx)
 |  | **In this script, students will...** | **Lab Assignments**  |
 | :-- | :-- | :-- |
-| <img src="Images/DFTCover2.png" width="267" alt="DFTCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab4\_DFT.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Script/Lab4_DFT.mlx)  |
+| <img src="Images/DFTCover2.png" width="267" alt="DFTCover2.png"> |<br>-  Compare signals in the time and frequency domains. <br>-  Analyze audio signals in the frequency domain. <br>-  Visualize Fourier series modes. <br>-  Describe how phase shift is represented in a Fourier series. <br>-  Discuss magnitude and phase. | [Lab4\_DFT.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab4_DFT.mlx)  |
 
 # Apps
 | Sine and Cosine Series app | Fourier Series app | Magnitude and Phase app | Complex Fourier Series app  |
