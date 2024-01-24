@@ -43,7 +43,7 @@ This module assumes minimal MATLAB knowledge required for these scripts, but you
 ### Accessing the Module
 ### **On MATLAB Online:**
 
-Use the [<img src="Images/image_1.png" width="136" alt="image_1.png">](http://openmatlabonlineroot.com) link to download the module. You will be prompted to log in or create a MathWorks account. The project will be loaded, and you will see an app with several navigation options to get you started.
+Use the [<img src="Images/image_1.png" width="136" alt="image_1.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj) link to download the module. You will be prompted to log in or create a MathWorks account. The project will be loaded, and you will see an app with several navigation options to get you started.
 
 ### **On Desktop:**
 
