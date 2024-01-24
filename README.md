@@ -1,6 +1,6 @@
 
 <a name="T_DEF03274"></a>
-
+ 
 # <span style="color:rgb(213,80,0)">Fourier Analysis</span>
 <a name="H_053613DF"></a>
 
