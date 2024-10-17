@@ -8,7 +8,7 @@
 
 **Curriculum Module**
 
-_Created with R2024a. Compatible with R2024a and later releases._
+_Created with R2021b. Compatible with R2024a and later releases._
 
 # Information
 
@@ -82,8 +82,8 @@ MATLAB®, Symbolic Math Toolbox™
 # Apps
 |      |      |      |      |
 | :-- | :-- | :-- | :-- |
-| [Sine and Cosine Series app](matlab:run SinCosSeries.mlapp;)  <br>  | [Fourier Series app](matlab:run InteractiveFourierSeries.mlapp;) <br>  |  [Magnitude and Phase app](matlab:run MagnitudePhase.mlapp;)  <br>  | [Complex Fourier Series app](matlab:run ComplexFourierSeries.mlapp) <br>   |
-| [<img src="Images/image_7.png" width="186" alt="image_7.png">](matlab:run SinCosSeries.mlapp) <br>  | [<img src="Images/image_8.png" width="186" alt="image_8.png">](matlab:run InteractiveFourierSeries.mlapp) <br>  | [<img src="Images/image_9.png" width="186" alt="image_9.png">](matlab:run MagnitudePhase.mlapp) <br>  | [<img src="Images/image_10.png" width="185" alt="image_10.png">](matlab:run ComplexFourierSeries.mlapp) <br>   |
+| [Sine and Cosine Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/SinCosSeries.mlapp;)  <br>  | [Fourier Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/InteractiveFourierSeries.mlapp;) <br>  |  [Magnitude and Phase app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/MagnitudePhase.mlapp;)  <br>  | [Complex Fourier Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/ComplexFourierSeries.mlapp) <br>   |
+| [<img src="Images/image_7.png" width="186" alt="image_7.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/SinCosSeries.mlapp) <br>  | [<img src="Images/image_8.png" width="186" alt="image_8.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/InteractiveFourierSeries.mlapp) <br>  | [<img src="Images/image_9.png" width="186" alt="image_9.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/MagnitudePhase.mlapp) <br>  | [<img src="Images/image_10.png" width="185" alt="image_10.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/ComplexFourierSeries.mlapp) <br>   |
 |      |      |      |       |
 
 
