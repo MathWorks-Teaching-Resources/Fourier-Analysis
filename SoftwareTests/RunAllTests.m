@@ -1,46 +1,42 @@
-function RunAllTest(EnableReport,ReportFolder)
+function RunAllTests(ShowReport)
 arguments
-    EnableReport (1,1) logical = false;
-    ReportFolder (1,1) string = "public";
+    ShowReport (1,1) logical = false;
 end
 
 import matlab.unittest.plugins.TestReportPlugin;
 
 % Create a runner
 Runner = matlab.unittest.TestRunner.withTextOutput;
-if EnableReport
-    Folder = fullfile(currentProject().RootFolder,ReportFolder);
-    if ~isfolder(Folder)
-        mkdir(Folder)
-    else
-        rmdir(Folder,'s')
-        mkdir(Folder)
-    end
-    Plugin = TestReportPlugin.producingHTML(Folder,...
-        "IncludingPassingDiagnostics",true,...
-        "IncludingCommandWindowText",true,...
-        "LoggingLevel",matlab.automation.Verbosity(1));
-        Runner.addPlugin(Plugin);
+Folder = fullfile(currentProject().RootFolder,"public",version("-release"));
+if ~isfolder(Folder)
+    mkdir(Folder)
+else
+    rmdir(Folder,'s')
+    mkdir(Folder)
 end
+Plugin = TestReportPlugin.producingHTML(Folder,...
+    "IncludingPassingDiagnostics",true,...
+    "IncludingCommandWindowText",true,...
+    "LoggingLevel",matlab.automation.Verbosity(1));
+Runner.addPlugin(Plugin);
+
 
 % Create the test suite with SmokeTest and Function test if they exist
 Suite = testsuite("SmokeTests");
 Suite = [Suite testsuite("FunctionTests")];
+Suite = [Suite testsuite("SolnSmokeTests")];
 
 % Run the test suite
 Results = Runner.run(Suite);
 
-if EnableReport
+if ShowReport
     web(fullfile(Folder,"index.html"))
-else
-    T = table(Results);
-    disp(newline + "Test summary:")
-    disp(T)
 end
 
 % Format the results in a table and save them
 ResultsTable = table(Results')
-writetable(ResultsTable,fullfile("SoftwareTests","TestResults_"+release_version+".txt"));
+writetable(ResultsTable,fullfile(currentProject().RootFolder,...
+    "public","TestResults_"+version("-release")+".txt"));
 
 % Assert success of test
 assertSuccess(Results);

@@ -16,7 +16,7 @@
 *.slmx binary merge=mlAutoMerge
 *.sltx binary
 *.slxc binary
-*.slx binary merge=mlAutoMerge
+*.slx binary merge=mlAutoMerge linguist-language=Simulink
 *.slxp binary
 
 ## Other common binary file types
