@@ -19,7 +19,7 @@ jobs:
     strategy: 
       fail-fast: false
       matrix:
-        MATLABVersion: [R2024b,R2025a]
+        MATLABVersion: [R2024b,R2025a,R2025b]
     runs-on: ubuntu-latest
     env:
       LD_PRELOAD: /usr/lib/x86_64-linux-gnu/libstdc++.so.6
