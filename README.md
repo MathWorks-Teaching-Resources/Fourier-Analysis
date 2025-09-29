@@ -23,7 +23,7 @@ The instructions inside the live scripts will guide you through the exercises an
 
 ## Contact Us
 
-Solutions are available upon instructor request. Contact the [MathWorks teaching resources team](mailto:onlineteaching@mathworks.com) if you would like to request solutions, provide feedback, or if you have a question.
+Contact the [MathWorks Educator Content Development Team](mailto:onlineteaching@mathworks.com) if you would like to request assistance, provide feedback, or if you have a question.
 
 
 ## Prerequisites
@@ -91,6 +91,7 @@ MATLAB®, Symbolic Math Toolbox™
 -  [Educator Page](https://www.mathworks.com/academia/educators.html) 
 
 
-Copyright 2023 The MathWorks™, Inc
+# Contribute 
+Looking for more? Find an issue? Have a suggestion? Please contact the [MathWorks Educator Content Development Team](mailto:onlineteaching@mathworks.com). If you want to contribute directly to this project, you can find information about how to do so in the [CONTRIBUTING.md](https://github.com/MathWorks-Teaching-Resources/fourier-analysis/blob/release/CONTRIBUTING.md) page on GitHub.
 
-
+© Copyright 2025 The MathWorks, Inc

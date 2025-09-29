@@ -32,7 +32,7 @@ Results = Runner.run(Suite);
 % Format the results in a table and save them
 Results = table(Results');
 Version = extractBetween(string(Results.Name),"Version=",")");
-Passed = Results.Passed;
+Passed = logical(Results.Passed);
 
 % Add link to other report
 File = fileread(fullfile("public","index.html"));
@@ -51,7 +51,7 @@ if all(Passed)
     Badge.message = join("R"+Version," | ");
 elseif any(Passed)
     Badge.color = "yellowgreen";
-    Badge.message = join("R")
+    Badge.message = join("R"+Version(Passed)," | ");
 elseif all(~Passed)
     Badge.color = "critical";
     Badge.message = join("R"+Version," | ");
