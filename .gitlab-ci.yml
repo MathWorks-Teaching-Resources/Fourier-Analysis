@@ -1,0 +1,60 @@
+stages:         
+# Set up two testing paths
+  - test
+  - deploy
+  - release
+
+test-matrix:
+  parallel:
+    matrix:
+      - VERSION: [R2025b,R2026a]
+  tags:
+    - training  
+    - windows
+  stage: test
+  script: 
+    - Set-Alias -Name matlab -Value "D:\MATLAB\$VERSION\bin\matlab-batch"
+    - matlab "openProject(pwd); buildtool -continueOnFailure"
+  when: always
+  allow_failure: true
+  artifacts:
+    name: "$VERSION"
+    paths:
+      - public/$VERSION/*
+    when:  always
+
+pages:
+  needs:
+    - test-matrix
+  variables:
+    VERSION: "R2026a"
+  tags:
+    - training
+    - windows
+  stage: deploy
+  script:
+    - Set-Alias -Name matlab -Value "D:\MATLAB\$VERSION\bin\matlab-batch"
+    - matlab "openProject(pwd); buildtool report -continueOnFailure"
+  when: always
+  allow_failure: true
+  artifacts:
+    paths:
+      - public
+        
+file-test:   
+  variables:
+    VERSION: "R2026a"
+  tags:
+    - training
+    - windows
+  stage: release
+  script:
+      - Set-Alias -Name matlab -Value "D:\MATLAB\$VERSION\bin\matlab-batch"
+      - git clone https://insidelabs-git.mathworks.com/modular-curriculum-content/utilities.git ci_utilities
+      - matlab "openProject(pwd); addpath(genpath(ci_utilities)); buildtool -buildFile ci-utilities\buildfile.m"
+  rules:
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+      when: always
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != $CI_DEFAULT_BRANCH
+      when: manual
+  allow_failure: true
