@@ -1,3 +1,5 @@
-%  Post-run script for FourierTransform.mlx
+%  Post-run script for FourierTransform.m
 % ---- Post-run commands -----
  
+% <matlab:ShareFeedback Share your feedback>
+

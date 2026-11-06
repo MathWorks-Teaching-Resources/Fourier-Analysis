@@ -6,7 +6,7 @@ classdef CoursewareSmokeTests < matlab.unittest.TestCase
     %   corresponding solution scripts in InstructorResources/Solutions.
     %
     % Design:
-    %   1) Discovers .m and .mlx script files in Scripts/ as test parameters.
+    %   1) Discovers .m script files in Scripts/ as test parameters.
     %   2) Executes each learner script and matching solution script.
     %   3) Runs optional per-script pre/post hooks in SoftwareTests/PreFiles
     %      and SoftwareTests/PostFiles.
@@ -32,7 +32,7 @@ classdef CoursewareSmokeTests < matlab.unittest.TestCase
             import matlab.buildtool.io.FileCollection
 
             rootFolder = Project.RootFolder;
-            filePaths = FileCollection.fromPaths(fullfile(rootFolder, "Scripts", ["*.m" "*.mlx"])).paths;
+            filePaths = FileCollection.fromPaths(fullfile(rootFolder, "Scripts", "*.m")).paths;
             [~, fileName, fileExt] = fileparts(filePaths);
             ScriptFile = cellstr(fileName + fileExt);
         end

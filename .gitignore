@@ -44,10 +44,11 @@ codegen/
 # Cache files
 *.slxc
 
-# Project settings
-Utilities/ProjectSettings.mat
-
 # Testing and CI related artifact
 public/
 .buildtool/
 ci_utilities/
+
+# AI Tooling
+.playwright-mcp/
+graphify-out/

@@ -1,322 +1,545 @@
 classdef ProjectStartupApp < matlab.apps.AppBase
+    % ProjectStartupApp Native courseware landing page with inline HTML.
 
-    % Properties that correspond to app components
     properties (Access = public)
-        StartUpAppUIFigure  matlab.ui.Figure
-        FeedBackPanel       matlab.ui.container.Panel
-        FeedBackGrid        matlab.ui.container.GridLayout
-        ReviewTitle         matlab.ui.control.Label
-        ReviewText          matlab.ui.control.Label
-        OtherButton         matlab.ui.control.Button
-        StudentButton       matlab.ui.control.Button
-        FacultyButton       matlab.ui.control.Button
-        Q1                  matlab.ui.control.Label
-        WelcomePanel        matlab.ui.container.Panel
-        WelcomeGrid         matlab.ui.container.GridLayout
-        WelcomeTitle        matlab.ui.control.Label
-        CoverImage          matlab.ui.control.Image
-        ReviewUsButton      matlab.ui.control.Button
-        READMEButton        matlab.ui.control.Button
-        MainMenuButton      matlab.ui.control.Button
+        StartUpAppUIFigure matlab.ui.Figure
+        Panel matlab.ui.container.Panel
+        GridLayout matlab.ui.container.GridLayout
+        Header matlab.ui.container.GridLayout
+        Upper matlab.ui.container.GridLayout
+        Lower matlab.ui.container.GridLayout
+        HTML matlab.ui.control.HTML
+        HTML2 matlab.ui.control.HTML
+        HTML3 matlab.ui.control.HTML
+        HTML4 matlab.ui.control.HTML
+        HTML5 matlab.ui.control.HTML
+        TeamLogo matlab.ui.control.Image
+        ContactLink matlab.ui.control.Button
+        Image2 matlab.ui.control.Image
+        ImageFallback matlab.ui.control.Label
+        MainMenuButton matlab.ui.control.Button
+        READMEButton matlab.ui.control.Button
+        InstructorButton matlab.ui.control.Button
+        ReviewUsButton matlab.ui.control.Button
+        StatusLabel matlab.ui.control.Label
     end
 
     % Properties to be modified
     properties (Access = private)
-        GitHubOrganization = "MathWorks-Teaching-Resources"; % Description
+        GitHubOrganization = "MathWorks-Teaching-Resources";
         GitHubRepository = "Fourier-Analysis";
-        ImagePath {mustBeFile} = fullfile("Images","image_7.png"); 
+        ImagePath = fullfile("Images","image_7.png");
+        HideInstructorResources = false;
     end
 
     properties (Access = private)
-        InitPosition;
-        ProjectName;
+        RootFolder string
+        ProjectName string
+        ProjectSummary string = ""
     end
 
     methods (Access = private, Static)
+        function html = snippet(content,reportHeight)
+            % Inline documents resize their content without supporting files.
+            if nargin < 2
+                reportHeight = false;
+            end
+            fitGuard = "";
+            if reportHeight
+                fitGuard = "return;";
+            end
+            padding = "8px";
+            if contains(content,'class="brand"')
+                padding = "0";
+            end
+            html = string('<!doctype html><html lang="en"><head><meta charset="utf-8">') + ...
+                string('<meta name="viewport" content="width=device-width,initial-scale=1">') + ...
+                string('<style>:root{--text:#172b3d;--muted:#526577;--accent:#0076a8;}') + ...
+                string('*{box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden}body{margin:0;padding:0;') + ...
+                string('font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:var(--text);line-height:1.5}') + ...
+                string('h1{font-size:clamp(24px,5vw,32px);font-weight:700;line-height:1.2;') + ...
+                string('margin:10px 0 16px;overflow-wrap:anywhere}h2{font-size:20px;margin:8px 0}') + ...
+                string('h3{font-size:18px;font-weight:700;line-height:1.3;margin:8px 0}p{margin:8px 0;color:var(--muted);font-size:14px}') + ...
+                string('.eyebrow{font-size:18px;font-weight:700;line-height:1.3;letter-spacing:0;color:var(--accent)}') + ...
+                string('.caption{font-size:12px}.brand{font-size:20px;font-weight:700;line-height:1.3;white-space:nowrap}') + ...
+                string('</style></head><body><div id="content" style="padding:') + ...
+                padding + string(';transform-origin:top left">') + ...
+                content + string('</div><script>const content=document.getElementById("content");') + ...
+                string('function fit(){') + fitGuard + ...
+                string('const w=document.documentElement.clientWidth,h=document.documentElement.clientHeight;') + ...
+                string('if(!w||!h)return;let scale=1;content.style.transform="none";') + ...
+                string('for(let i=0;i<20;i++){content.style.width=(w/scale)+"px";') + ...
+                string('const next=Math.min(1,h/content.scrollHeight,w/content.scrollWidth);') + ...
+                string('if(next>=scale-0.001)break;scale=next;}') + ...
+                string('content.style.transform="scale("+scale+")";}') + ...
+                string('new ResizeObserver(()=>requestAnimationFrame(fit)).observe(document.documentElement);') + ...
+                'window.addEventListener("load",fit);fit();</script></body></html>';
+            if reportHeight
+                html = replace(html,'</body>', ...
+                    string('<script>function setup(component){function report(){') + ...
+                    'component.Data=Math.ceil(document.getElementById("content").scrollHeight);}' + ...
+                    'new ResizeObserver(report).observe(document.getElementById("content"));' + ...
+                    'report();}</script></body>');
+            end
+        end
 
-        function saveSettings(isReviewed,numLoad)
+        function text = escapeHTML(text)
+            text = replace(string(text),'&','&amp;');
+            text = replace(text,'<','&lt;');
+            text = replace(text,'>','&gt;');
+            text = replace(text,'"','&quot;');
+        end
+    end
+
+    methods (Access = private)
+        function alignNativeTypography(app)
+            % Match native controls to the inline HTML typography.
+            controls = findall(app.StartUpAppUIFigure,'-property','FontName');
+            for index = 1:numel(controls)
+                controls(index).FontName = 'Segoe UI';
+                if isprop(controls(index),'FontColor')
+                    if ~isequal(controls(index).FontColor,[1 1 1])
+                        controls(index).FontColor = [23 43 61]/255;
+                    end
+                end
+                if isa(controls(index),'matlab.ui.control.Hyperlink')
+                    controls(index).FontColor = [0 118 168]/255;
+                end
+            end
+            app.StatusLabel.FontColor = [82 101 119]/255;
+        end
+
+        function createCompatibilityComponents(app,preview)
+            app.RootFolder = string(fileparts(fileparts(mfilename('fullpath'))));
+            app.StartUpAppUIFigure = uifigure('Name','Courseware compatibility', ...
+                'Position',[100 100 800 540],'Color',[0.97 0.98 0.99]);
+            app.StartUpAppUIFigure.CloseRequestFcn = @(~,~) delete(app);
+            root = uigridlayout(app.StartUpAppUIFigure,[2 1]);
+            root.RowHeight = {62,'1x'};
+            root.Padding = [0 0 0 0];
+            root.RowSpacing = 0;
+            root.BackgroundColor = [0.97 0.98 0.99];
+            app.Header = uigridlayout(root,[1 2]);
+            app.Header.Layout.Row = 1;
+            app.Header.ColumnWidth = {64,'1x'};
+            app.Header.Padding = [12 0 12 0];
+            app.Header.BackgroundColor = [1 1 1];
+            app.TeamLogo = uiimage(app.Header,'ScaleMethod','fit', ...
+                'ImageSource',fullfile(app.RootFolder,'Images','TeachingResourcesLogo.png'), ...
+                'BackgroundColor',app.Header.BackgroundColor);
+            app.TeamLogo.Layout.Column = 1;
+            brandGrid = uigridlayout(app.Header,[2 1]);
+            brandGrid.Layout.Column = 2;
+            brandGrid.RowHeight = {26,18};
+            brandGrid.Padding = [0 9 0 9];
+            brandGrid.RowSpacing = 0;
+            brandGrid.BackgroundColor = app.Header.BackgroundColor;
+            brand = uilabel(brandGrid,'Text','MathWorks Teaching Resources', ...
+                'FontSize',20,'FontWeight','bold','FontColor',[0.09 0.17 0.24]);
+            brand.Layout.Row = 1;
+            aboutLink = uihyperlink(brandGrid,'Text','About Us','FontSize',12, ...
+                'HorizontalAlignment','left', ...
+                'URL','https://www.mathworks.com/matlabcentral/profile/authors/37969341');
+            aboutLink.Layout.Row = 2;
+            repositoryConfigured = strlength(strtrim(app.GitHubOrganization)) > 0 && ...
+                strlength(strtrim(app.GitHubRepository)) > 0 && ...
+                ~strcmpi(strtrim(app.GitHubOrganization),"XXXX") && ...
+                ~strcmpi(strtrim(app.GitHubRepository),"XXXX");
+            grid = uigridlayout(root,[4 + repositoryConfigured 1]);
+            grid.Layout.Row = 2;
+            grid.RowHeight = [{'fit','1x'},repmat({64},1,1 + repositoryConfigured),{'fit'}];
+            grid.Padding = [24 16 24 16];
+            grid.RowSpacing = 10;
+            grid.BackgroundColor = root.BackgroundColor;
+            heading = uilabel(grid,'Text','Choose how to open this courseware', ...
+                'FontSize',24,'FontWeight','bold','WordWrap','on', ...
+                'FontColor',[0.09 0.17 0.24]);
+            heading.Layout.Row = 1;
+            release = version('-release');
+            if preview
+                release = '2024b';
+            end
+            message = uilabel(grid,'Text', ...
+                ['You are using MATLAB R' release '. This courseware uses ' ...
+                'plain-text Live Scripts, which require R2025a or newer for the best viewing experience. ' ...
+                'We have some great options to help you explore this content:'], ...
+                'WordWrap','on','FontSize',14,'FontColor',[0.32 0.40 0.47]);
+            message.Layout.Row = 2;
+            nextRow = 3;
+            if repositoryConfigured
+                online = uibutton(grid,'Text', ...
+                    {'MATLAB Online','Open this courseware in MATLAB Online with just one click!'}, ...
+                    'FontSize',14,'FontWeight','bold', ...
+                    'BackgroundColor',[0 0.46 0.66],'FontColor',[1 1 1], ...
+                    'ButtonPushedFcn',@(~,~) app.openCompatibilityResource("online"));
+                online.Layout.Row = nextRow;
+                nextRow = nextRow + 1;
+            end
+            latest = uibutton(grid,'Text', ...
+                {'Upgrade MATLAB','Download the latest version for the full courseware experience.'}, ...
+                'FontSize',14,'FontWeight','bold','BackgroundColor',[1 1 1],'FontColor',[0.09 0.17 0.24], ...
+                'ButtonPushedFcn',@(~,~) app.openCompatibilityResource("latest"));
+            latest.Layout.Row = nextRow;
+            app.StatusLabel = uilabel(grid,'Text','','WordWrap','on', ...
+                'FontSize',12,'FontColor',[0.32 0.40 0.47]);
+            app.StatusLabel.Layout.Row = nextRow + 1;
+            app.alignNativeTypography()
+            message.FontColor = [82 101 119]/255;
+            drawnow
+            if ~isvalid(app) || ~isvalid(grid)
+                return
+            end
+            if repositoryConfigured
+                if ~preview
+                    app.openCompatibilityResource("online")
+                end
+                repository = app.GitHubOrganization + "/" + app.GitHubRepository;
+                try
+                    options = weboptions('Timeout',3,'ContentType','json');
+                    releaseInfo = webread(char("https://api.github.com/repos/" + ...
+                        repository + "/releases/tags/mlx"),options);
+                    hasLegacyRelease = isstruct(releaseInfo) && isscalar(releaseInfo) && ...
+                        isfield(releaseInfo,'tag_name') && strcmp(releaseInfo.tag_name,'mlx') && ...
+                        isfield(releaseInfo,'draft') && isequal(releaseInfo.draft,false);
+                catch
+                    % Unconfirmed releases do not offer a download option.
+                    hasLegacyRelease = false;
+                end
+                if hasLegacyRelease && isvalid(app) && isvalid(grid)
+                    grid.RowHeight = {'fit','1x',64,64,64,'fit'};
+                    latest.Layout.Row = 5;
+                    app.StatusLabel.Layout.Row = 6;
+                    legacy = uibutton(grid,'Text', ...
+                        {'Download legacy version','We saved a version with MLX Live Scripts on GitHub for your current MATLAB.'}, ...
+                        'FontName','Segoe UI','FontSize',14,'FontWeight','bold', ...
+                        'BackgroundColor',[1 1 1],'FontColor',[23 43 61]/255, ...
+                        'ButtonPushedFcn',@(~,~) app.openCompatibilityResource("legacy"));
+                    legacy.Layout.Row = 4;
+                end
+            end
+        end
+
+        function openCompatibilityResource(app,action)
+            repository = app.GitHubOrganization + "/" + app.GitHubRepository;
+            switch action
+                case "online"
+                    url = "https://matlab.mathworks.com/open/github/v1?repo=" + repository;
+                    projects = dir(fullfile(app.RootFolder,'*.prj'));
+                    if isscalar(projects)
+                        url = url + "&project=" + string(matlab.net.URI.encode(projects.name));
+                    end
+                case "legacy"
+                    url = "https://github.com/" + repository + "/releases/tag/mlx";
+                case "latest"
+                    url = "https://www.mathworks.com/downloads/";
+            end
             try
-                save(fullfile("Utilities","ProjectSettings.mat"),"isReviewed","numLoad");
-            catch
+                status = web(char(url),'-browser');
+                if status ~= 0
+                    error('ProjectStartupApp:Browser','The browser could not open. Please try again.')
+                end
+                app.StatusLabel.Text = 'Opened in your browser.';
+            catch exception
+                app.StatusLabel.Text = exception.message;
             end
         end
 
-    end
-    
-
-    % Callbacks that handle component events
-    methods (Access = private)
-
-        % Code that executes after component creation
         function startupFcn(app)
-            
-            % Copy title and set cover image
-            app.ProjectName = currentProject().Name;
-            app.WelcomeTitle.Text = "Welcome to " + app.ProjectName; 
-            app.ReviewTitle.Text = app.WelcomeTitle.Text;
-            app.CoverImage.ImageSource = app.ImagePath;
-
-            % Switch tab to review if has not been reviewed yet
-            if isfile(fullfile("Utilities","ProjectSettings.mat"))
-                load(fullfile("Utilities","ProjectSettings.mat"),"isReviewed","numLoad");
-                numLoad = numLoad + 1; % Increment counter
-            else
-                isReviewed = false;
-                numLoad = 1; % Initialize counter
+            app.RootFolder = string(fileparts(fileparts(mfilename('fullpath'))));
+            app.ProjectName = "Courseware Module";
+            try
+                project = currentProject();
+                if string(project.RootFolder) == app.RootFolder
+                    app.ProjectName = string(project.Name);
+                    app.ProjectSummary = string(project.Description);
+                end
+            catch
+                % Direct launch also works before opening the project.
             end
-
-            % Select tab to display
-            if ~isReviewed && numLoad > 2
-                isReviewed = true;
-                app.FeedBackGrid.Parent = app.StartUpAppUIFigure; 
-            else
-                app.WelcomeGrid.Parent = app.StartUpAppUIFigure;
+            title = app.escapeHTML(app.ProjectName);
+            summary = app.escapeHTML(app.ProjectSummary);
+            app.HTML4.HTMLSource = app.snippet('<div class="brand">MathWorks Teaching Resources</div>');
+            app.HTML5.HTMLSource = app.snippet(string('<h1>') + title + ...
+                '</h1><p style="white-space:pre-wrap">' + summary + '</p>',true);
+            app.HTML.HTMLSource = app.snippet(string('<p class="eyebrow">LEARN</p>') + ...
+                '<h3>For students</h3><p>Read the overview, prerequisites, and tips for getting started.</p>');
+            if ~app.HideInstructorResources
+                app.HTML2.HTMLSource = app.snippet(string('<p class="eyebrow">TEACH</p>') + ...
+                    '<h3>For instructors</h3><p>Find guidance and resources for adapting and teaching with this module.</p>');
             end
-            app.InitPosition = app.StartUpAppUIFigure.Position;
-
-            % Save new settings
-            app.saveSettings(isReviewed,numLoad)
-            
-        end
-
-        % Close request function: StartUpAppUIFigure
-        function StartUpAppUIFigureCloseRequest(app, event)
-            if event.Source == app.READMEButton
-                open README.mlx
-            elseif event.Source == app.MainMenuButton
-                open MainMenu.mlx
-            elseif event.Source == app.FacultyButton
-                open MainMenu.mlx            
-            elseif event.Source == app.StudentButton
-                open MainMenu.mlx
-            elseif event.Source == app.OtherButton
-                open MainMenu.mlx
-            else
-                disp("Thank you for your time.")
+            app.HTML3.HTMLSource = app.snippet(string('<p class="eyebrow">IMPROVE</p>') + ...
+                '<h3>Help shape what&#8217;s next</h3><p>Tell us what worked and what could make your experience better.</p>');
+            imageFile = fullfile(app.RootFolder,app.ImagePath);
+            if isfile(imageFile)
+                try
+                    app.Image2.ImageSource = imageFile;
+                    app.ImageFallback.Visible = 'off';
+                    app.Image2.Visible = 'on';
+                catch
+                    app.showStatus('The cover image could not be loaded. Course materials are still available.')
+                end
             end
-            delete(app)
-        end
-
-        % Button pushed function: MainMenuButton
-        function MainMenuButtonPushed(app, event)
-            StartUpAppUIFigureCloseRequest(app,event)
-        end
-
-        % Button pushed function: FacultyButton
-        function FacultyButtonPushed(app, event)
-            % Open Faculty Form
-            import matlab.net.*
-            % Create the URI object with the base URL
-            uri = URI('https://forms.office.com/Pages/ResponsePage.aspx','literal');
-            % Set the Query property with an array of QueryParameter objects
-            uri.Query = [
-                QueryParameter('id', 'ETrdmUhDaESb3eUHKx3B5mlcO9AKxC5AgMAKBg6OKuBUNTVXVlBTS0lOU0hPRExYMldGWldVQUhIRC4u')
-                QueryParameter('r2017080ed20546d1a2db18fe36421929', app.ProjectName)
-                ];
-            web(strrep(uri.EncodedURI,"+","%20"))
-            StartUpAppUIFigureCloseRequest(app,event)
-        end
-
-        % Button pushed function: StudentButton
-        function StudentButtonPushed(app, event)
-            % Open Student Form
-            import matlab.net.*
-            % Create the URI object with the base URL
-            uri = URI('https://forms.office.com/Pages/ResponsePage.aspx','literal');
-            % Set the Query property with an array of QueryParameter objects
-            uri.Query = [
-                QueryParameter('id', 'ETrdmUhDaESb3eUHKx3B5mlcO9AKxC5AgMAKBg6OKuBUNlNBOVRZSDZHT1VTMzA4MjdHSUdVR0o3Vy4u')
-                QueryParameter('r362e367caa234debbf4f65a58a0338e6', app.ProjectName)
-                ];
-            web(strrep(uri.EncodedURI,"+","%20"))
-            StartUpAppUIFigureCloseRequest(app,event)
-        end
-
-        % Button pushed function: OtherButton
-        function OtherButtonPushed(app, event)
-            % Open Student Form
-            import matlab.net.*
-            % Create the URI object with the base URL
-            uri = URI('https://forms.office.com/Pages/ResponsePage.aspx','literal');
-            % Set the Query property with an array of QueryParameter objects
-            uri.Query = [
-                QueryParameter('id', 'ETrdmUhDaESb3eUHKx3B5mlcO9AKxC5AgMAKBg6OKuBUNlNBOVRZSDZHT1VTMzA4MjdHSUdVR0o3Vy4u')
-                QueryParameter('r362e367caa234debbf4f65a58a0338e6', app.ProjectName)
-                ];
-            web(strrep(uri.EncodedURI,"+","%20"))
-            StartUpAppUIFigureCloseRequest(app,event)
-        end
-
-        % Button pushed function: ReviewUsButton
-        function ReviewUsButtonPushed(app, event)
-            app.WelcomeGrid.Parent = app.WelcomePanel;
-            app.FeedBackGrid.Parent = app.StartUpAppUIFigure;
-        end
-
-        % Button pushed function: READMEButton
-        function READMEButtonPushed(app, event)
-            StartUpAppUIFigureCloseRequest(app,event)
-        end
-    end
-
-    % Component initialization
-    methods (Access = private)
-
-        % Create UIFigure and components
-        function createComponents(app)
-
-            % Create StartUpAppUIFigure and hide until all components are created
-            app.StartUpAppUIFigure = uifigure('Visible', 'off');
-            app.StartUpAppUIFigure.AutoResizeChildren = 'off';
-            app.StartUpAppUIFigure.Position = [100 100 276 430];
-            app.StartUpAppUIFigure.Name = 'StartUp App';
-            app.StartUpAppUIFigure.CloseRequestFcn = createCallbackFcn(app, @StartUpAppUIFigureCloseRequest, true);
-
-            % Create WelcomePanel
-            app.WelcomePanel = uipanel(app.StartUpAppUIFigure);
-            app.WelcomePanel.AutoResizeChildren = 'off';
-            app.WelcomePanel.Position = [-551 33 244 410];
-
-            % Create WelcomeGrid
-            app.WelcomeGrid = uigridlayout(app.WelcomePanel);
-            app.WelcomeGrid.ColumnWidth = {'1x', '8x', '1x'};
-            app.WelcomeGrid.RowHeight = {'2x', '5x', '1x', '1x', '1x'};
-
-            % Create MainMenuButton
-            app.MainMenuButton = uibutton(app.WelcomeGrid, 'push');
-            app.MainMenuButton.ButtonPushedFcn = createCallbackFcn(app, @MainMenuButtonPushed, true);
-            app.MainMenuButton.FontSize = 18;
-            app.MainMenuButton.Layout.Row = 3;
-            app.MainMenuButton.Layout.Column = 2;
-            app.MainMenuButton.Text = 'Main Menu';
-
-            % Create READMEButton
-            app.READMEButton = uibutton(app.WelcomeGrid, 'push');
-            app.READMEButton.ButtonPushedFcn = createCallbackFcn(app, @READMEButtonPushed, true);
-            app.READMEButton.FontSize = 18;
-            app.READMEButton.Layout.Row = 4;
-            app.READMEButton.Layout.Column = 2;
-            app.READMEButton.Text = 'README';
-
-            % Create ReviewUsButton
-            app.ReviewUsButton = uibutton(app.WelcomeGrid, 'push');
-            app.ReviewUsButton.ButtonPushedFcn = createCallbackFcn(app, @ReviewUsButtonPushed, true);
-            app.ReviewUsButton.FontSize = 18;
-            app.ReviewUsButton.Layout.Row = 5;
-            app.ReviewUsButton.Layout.Column = 2;
-            app.ReviewUsButton.Text = 'Review Us';
-
-            % Create CoverImage
-            app.CoverImage = uiimage(app.WelcomeGrid);
-            app.CoverImage.Layout.Row = 2;
-            app.CoverImage.Layout.Column = [1 3];
-            app.CoverImage.ImageSource = 'image_7.png';
-
-            % Create WelcomeTitle
-            app.WelcomeTitle = uilabel(app.WelcomeGrid);
-            app.WelcomeTitle.HorizontalAlignment = 'center';
-            app.WelcomeTitle.VerticalAlignment = 'top';
-            app.WelcomeTitle.WordWrap = 'on';
-            app.WelcomeTitle.FontSize = 24;
-            app.WelcomeTitle.FontWeight = 'bold';
-            app.WelcomeTitle.Layout.Row = 1;
-            app.WelcomeTitle.Layout.Column = [1 3];
-            app.WelcomeTitle.Text = '';
-
-            % Create FeedBackPanel
-            app.FeedBackPanel = uipanel(app.StartUpAppUIFigure);
-            app.FeedBackPanel.AutoResizeChildren = 'off';
-            app.FeedBackPanel.Position = [-291 33 236 409];
-
-            % Create FeedBackGrid
-            app.FeedBackGrid = uigridlayout(app.FeedBackPanel);
-            app.FeedBackGrid.ColumnWidth = {'1x', '8x', '1x'};
-            app.FeedBackGrid.RowHeight = {'2x', '3x', '2x', '1x', '1x', '1x'};
-
-            % Create Q1
-            app.Q1 = uilabel(app.FeedBackGrid);
-            app.Q1.HorizontalAlignment = 'center';
-            app.Q1.WordWrap = 'on';
-            app.Q1.FontSize = 18;
-            app.Q1.FontWeight = 'bold';
-            app.Q1.Layout.Row = 3;
-            app.Q1.Layout.Column = [1 3];
-            app.Q1.Text = 'What describes you best?';
-
-            % Create FacultyButton
-            app.FacultyButton = uibutton(app.FeedBackGrid, 'push');
-            app.FacultyButton.ButtonPushedFcn = createCallbackFcn(app, @FacultyButtonPushed, true);
-            app.FacultyButton.FontSize = 18;
-            app.FacultyButton.Layout.Row = 4;
-            app.FacultyButton.Layout.Column = 2;
-            app.FacultyButton.Text = 'Faculty';
-
-            % Create StudentButton
-            app.StudentButton = uibutton(app.FeedBackGrid, 'push');
-            app.StudentButton.ButtonPushedFcn = createCallbackFcn(app, @StudentButtonPushed, true);
-            app.StudentButton.FontSize = 18;
-            app.StudentButton.Layout.Row = 5;
-            app.StudentButton.Layout.Column = 2;
-            app.StudentButton.Text = 'Student';
-
-            % Create OtherButton
-            app.OtherButton = uibutton(app.FeedBackGrid, 'push');
-            app.OtherButton.ButtonPushedFcn = createCallbackFcn(app, @OtherButtonPushed, true);
-            app.OtherButton.FontSize = 18;
-            app.OtherButton.Layout.Row = 6;
-            app.OtherButton.Layout.Column = 2;
-            app.OtherButton.Text = 'Other';
-
-            % Create ReviewText
-            app.ReviewText = uilabel(app.FeedBackGrid);
-            app.ReviewText.HorizontalAlignment = 'center';
-            app.ReviewText.WordWrap = 'on';
-            app.ReviewText.FontSize = 14;
-            app.ReviewText.Layout.Row = 2;
-            app.ReviewText.Layout.Column = [1 3];
-            app.ReviewText.Text = 'Please help us improve your experience by answering a few questions.';
-
-            % Create ReviewTitle
-            app.ReviewTitle = uilabel(app.FeedBackGrid);
-            app.ReviewTitle.HorizontalAlignment = 'center';
-            app.ReviewTitle.VerticalAlignment = 'top';
-            app.ReviewTitle.WordWrap = 'on';
-            app.ReviewTitle.FontSize = 24;
-            app.ReviewTitle.FontWeight = 'bold';
-            app.ReviewTitle.Layout.Row = 1;
-            app.ReviewTitle.Layout.Column = [1 3];
-            app.ReviewTitle.Text = '';
-
-            % Show the figure after all components are created
             app.StartUpAppUIFigure.Visible = 'on';
         end
+
+        function showStatus(app,message)
+            app.StatusLabel.Text = message;
+            if strlength(string(message)) > 0
+                app.StatusLabel.Parent.RowHeight{3} = 'fit';
+            else
+                app.StatusLabel.Parent.RowHeight{3} = 0;
+            end
+        end
+
+        function navigate(app,action)
+            try
+                switch action
+                    case "resources"
+                        status = web('https://github.com/MathWorks-Teaching-Resources','-browser');
+                        if status ~= 0
+                            error('ProjectStartupApp:Browser','The browser could not open. Please try again.')
+                        end
+                    case "contact"
+                        status = web('https://www.mathworks.com/matlabcentral/profile/authors/37969341','-browser');
+                        if status ~= 0
+                            error('ProjectStartupApp:Browser','The browser could not open. Please try again.')
+                        end
+                    case "feedback"
+                        app.openFeedback()
+                    case "instructor"
+                        if app.HideInstructorResources
+                            error('ProjectStartupApp:UnavailableAction','Instructor resources are unavailable in this app.')
+                        end
+                        folder = fullfile(app.RootFolder,'InstructorResources');
+                        if ~isfolder(folder)
+                            error('ProjectStartupApp:MissingInstructors','Instructor resources are unavailable in this copy.')
+                        end
+                        addpath(genpath(folder))
+                        InstructorResources;
+                        delete(app)
+                    case "readme"
+                        app.openCourseFile(fullfile(app.RootFolder,'README'))
+                        delete(app)
+                    case "main"
+                        app.openCourseFile(fullfile(app.RootFolder,'MainMenu'))
+                        delete(app)
+                    otherwise
+                        error('ProjectStartupApp:UnknownAction','This action is unavailable.')
+                end
+            catch exception
+                app.showStatus(exception.message)
+                uialert(app.StartUpAppUIFigure,exception.message,'Unable to open resource')
+            end
+        end
+
+        function openCourseFile(~,base)
+            if isfile(base + '.m')
+                open(base + '.m')
+            else
+                error('ProjectStartupApp:MissingFile','The requested course file is missing: %s',base)
+            end
+        end
+
+        function openFeedback(app)
+            try
+                if isempty(which('ShareFeedback'))
+                    % Support direct app launch before the project adds Utilities.
+                    previousPath = path;
+                    pathCleanup = onCleanup(@() path(previousPath));
+                    addpath(fullfile(app.RootFolder,'Utilities'))
+                end
+                role = "choose";
+                if app.HideInstructorResources
+                    role = "student";
+                end
+                opened = ShareFeedback(Role=role,ProjectName=app.ProjectName,Parent=app.StartUpAppUIFigure);
+                if ~opened
+                    return
+                end
+                app.showStatus('Feedback opened in your browser. Thank you for sharing your experience.')
+            catch exception
+                app.showStatus(exception.message)
+                uialert(app.StartUpAppUIFigure,exception.message,'Unable to open feedback')
+            end
+        end
+
+        function [html,button] = resourceCard(app,column,buttonText,action)
+            panel = uipanel(app.Lower,'BorderType','line','BackgroundColor',[1 1 1]);
+            panel.Layout.Column = column;
+            grid = uigridlayout(panel,[2 1]);
+            grid.RowHeight = {'1x',34};
+            grid.Padding = [10 10 10 10];
+            grid.RowSpacing = 6;
+            grid.BackgroundColor = [1 1 1];
+            html = uihtml(grid);
+            html.Layout.Row = 1;
+            button = uibutton(grid,'Text',buttonText,'FontSize',14, ...
+                'FontWeight','bold','ButtonPushedFcn',@(~,~) app.navigate(action));
+            button.Layout.Row = 2;
+        end
+
+        function updateSummaryHeight(app)
+            height = app.HTML5.Data;
+            if isnumeric(height) && isscalar(height) && isfinite(height) && height > 0
+                grid = app.HTML5.Parent;
+                available = max(1,grid.Position(4) - 36 - 2*grid.RowSpacing);
+                grid.RowHeight = {min(height,available),36,'1x'};
+            end
+        end
+
+        function createComponents(app)
+            % Leave room for the taskbar and window decorations on small displays.
+            previousUnits = get(groot,'Units');
+            unitsCleanup = onCleanup(@() set(groot,'Units',previousUnits));
+            set(groot,'Units','pixels')
+            screen = get(groot,'ScreenSize');
+            windowWidth = min(800,screen(3)-64);
+            windowHeight = min(540,screen(4)-100);
+            windowPosition = [screen(1)+(screen(3)-windowWidth)/2, ...
+                screen(2)+(screen(4)-windowHeight)/2,windowWidth,windowHeight];
+            clear unitsCleanup
+            app.StartUpAppUIFigure = uifigure('Visible','off','Name','StartUp App', ...
+                'Position',windowPosition,'Tag','ProjectStartupNative', ...
+                'Color',[0.97 0.98 0.99]);
+            app.StartUpAppUIFigure.CloseRequestFcn = @(~,~) delete(app);
+            root = uigridlayout(app.StartUpAppUIFigure,[3 1]);
+            root.RowHeight = {62,'1x',0};
+            root.Padding = [0 0 0 0];
+            root.BackgroundColor = [0.97 0.98 0.99];
+            app.Header = uigridlayout(root,[1 4]);
+            app.Header.Layout.Row = 1;
+            app.Header.ColumnWidth = {64,'1x',36,36};
+            app.Header.Padding = [12 0 12 0];
+            app.Header.BackgroundColor = [1 1 1];
+            app.TeamLogo = uiimage(app.Header,'ScaleMethod','fit', ...
+                'ImageSource',fullfile(fileparts(fileparts(mfilename('fullpath'))),'Images','TeachingResourcesLogo.png'), ...
+                'BackgroundColor',app.Header.BackgroundColor);
+            app.TeamLogo.Layout.Column = 1;
+            brandGrid = uigridlayout(app.Header,[2 1]);
+            brandGrid.Layout.Column = 2;
+            brandGrid.RowHeight = {26,18};
+            brandGrid.Padding = [0 9 0 9];
+            brandGrid.RowSpacing = 0;
+            brandGrid.BackgroundColor = app.Header.BackgroundColor;
+            app.HTML4 = uihtml(brandGrid);
+            app.HTML4.Layout.Row = 1;
+            aboutLink = uihyperlink(brandGrid,'Text','About us','FontSize',12, ...
+                'HorizontalAlignment','left', ...
+                'URL','https://www.mathworks.com/matlabcentral/profile/authors/37969341');
+            aboutLink.Layout.Row = 2;
+            contactGrid = uigridlayout(app.Header,[3 1]);
+            contactGrid.Layout.Column = 3;
+            contactGrid.RowHeight = {'1x',36,'1x'};
+            contactGrid.Padding = [0 0 0 0];
+            contactGrid.RowSpacing = 0;
+            contactGrid.BackgroundColor = app.Header.BackgroundColor;
+            app.ContactLink = uibutton(contactGrid,'Text','', ...
+                'Icon',fullfile(fileparts(fileparts(mfilename('fullpath'))),'Images','MailIcon.png'), ...
+                'IconAlignment','center', ...
+                'BackgroundColor',[0.97 0.98 0.99],'FontColor',[0.38 0.46 0.52], ...
+                'Tooltip','About Us / Contact Us', ...
+                'ButtonPushedFcn',@(~,~) app.navigate("contact"));
+            app.ContactLink.Layout.Row = 2;
+            resourcesGrid = uigridlayout(app.Header,[3 1]);
+            resourcesGrid.Layout.Column = 4;
+            resourcesGrid.RowHeight = {'1x',36,'1x'};
+            resourcesGrid.Padding = [0 0 0 0];
+            resourcesGrid.RowSpacing = 0;
+            resourcesGrid.BackgroundColor = app.Header.BackgroundColor;
+            resourcesButton = uibutton(resourcesGrid,'Text','', ...
+                'Icon',fullfile(matlabroot,'toolbox','matlab','project','sharing','github','images','github_24.png'), ...
+                'BackgroundColor',[0.97 0.98 0.99],'FontColor',[0.38 0.46 0.52], ...
+                'Tooltip','Follow us on GitHub', ...
+                'ButtonPushedFcn',@(~,~) app.navigate("resources"));
+            resourcesButton.Layout.Row = 2;
+            app.Panel = uipanel(root,'BorderType','none');
+            app.Panel.Layout.Row = 2;
+            app.GridLayout = uigridlayout(app.Panel,[2 1]);
+            app.GridLayout.RowHeight = {'1.1x','1x'};
+            app.GridLayout.Padding = [16 12 16 12];
+            app.GridLayout.RowSpacing = 10;
+            app.GridLayout.Scrollable = 'off';
+            app.GridLayout.BackgroundColor = [0.97 0.98 0.99];
+            app.Upper = uigridlayout(app.GridLayout,[1 2]);
+            app.Upper.Layout.Row = 1;
+            app.Upper.ColumnWidth = {'1x','1x'};
+            app.Upper.Padding = [0 0 0 0];
+            app.Upper.BackgroundColor = app.GridLayout.BackgroundColor;
+            copy = uigridlayout(app.Upper,[3 1]);
+            copy.Layout.Column = 1;
+            copy.RowHeight = {120,36,'1x'};
+            copy.RowSpacing = 6;
+            copy.Padding = [0 0 10 0];
+            copy.BackgroundColor = app.GridLayout.BackgroundColor;
+            app.HTML5 = uihtml(copy);
+            app.HTML5.Layout.Row = 1;
+            app.HTML5.DataChangedFcn = @(~,~) app.updateSummaryHeight();
+            app.StartUpAppUIFigure.AutoResizeChildren = 'off';
+            app.StartUpAppUIFigure.SizeChangedFcn = @(~,~) app.updateSummaryHeight();
+            app.MainMenuButton = uibutton(copy,'Text','Open Main Menu', ...
+                'FontSize',14,'FontWeight','bold','BackgroundColor',[0 0.46 0.66], ...
+                'FontColor',[1 1 1],'ButtonPushedFcn',@(~,~) app.navigate("main"));
+            app.MainMenuButton.Layout.Row = 2;
+            artwork = uigridlayout(app.Upper,[1 1]);
+            artwork.Layout.Column = 2;
+            artwork.Padding = [4 4 4 4];
+            artwork.BackgroundColor = app.GridLayout.BackgroundColor;
+            app.Image2 = uiimage(artwork,'ScaleMethod','fit','Visible','off', ...
+                'BackgroundColor',app.GridLayout.BackgroundColor);
+            app.Image2.Layout.Row = 1;
+            app.Image2.Layout.Column = 1;
+            app.ImageFallback = uilabel(artwork,'Text','Explore. Experiment. Understand.', ...
+                'WordWrap','on','HorizontalAlignment','center','FontSize',20,'FontWeight','bold');
+            app.ImageFallback.Layout.Row = 1;
+            app.ImageFallback.Layout.Column = 1;
+            cardCount = 3 - app.HideInstructorResources;
+            app.Lower = uigridlayout(app.GridLayout,[1 cardCount]);
+            app.Lower.Layout.Row = 2;
+            app.Lower.ColumnWidth = repmat({'1x'},1,cardCount);
+            app.Lower.ColumnSpacing = 10;
+            app.Lower.Padding = [0 0 0 0];
+            app.Lower.BackgroundColor = app.GridLayout.BackgroundColor;
+            [app.HTML,app.READMEButton] = app.resourceCard(1,'Open README',"readme");
+            if ~app.HideInstructorResources
+                [app.HTML2,app.InstructorButton] = app.resourceCard(2,'Instructor resources',"instructor");
+            end
+            [app.HTML3,app.ReviewUsButton] = app.resourceCard(cardCount,'Share Feedback',"feedback");
+            app.StatusLabel = uilabel(root,'Text','','WordWrap','on','FontSize',12);
+            app.StatusLabel.Layout.Row = 3;
+            app.alignNativeTypography()
+            app.ContactLink.FontColor = [82 101 119]/255;
+        end
+
     end
 
-    % App creation and deletion
     methods (Access = public)
-
-        % Construct app
-        function app = ProjectStartupApp
-
-            % Create UIFigure and components
-            createComponents(app)
-
-            % Register the app with App Designer
-            registerApp(app, app.StartUpAppUIFigure)
-
-            % Execute the startup function
-            runStartupFcn(app, @startupFcn)
-
+        function app = ProjectStartupApp(mode)
+            if nargin == 0
+                mode = "default";
+            end
+            preview = strcmp(mode,"previewLegacy");
+            try
+                if preview || isMATLABReleaseOlderThan("R2025a")
+                    createCompatibilityComponents(app,preview)
+                    registerApp(app,app.StartUpAppUIFigure)
+                    return
+                end
+                createComponents(app)
+                registerApp(app,app.StartUpAppUIFigure)
+                runStartupFcn(app,@startupFcn)
+            catch exception
+                delete(app)
+                rethrow(exception)
+            end
             if nargout == 0
                 clear app
             end
         end
 
-        % Code that executes before app deletion
         function delete(app)
-
-            % Delete UIFigure when app is deleted
-            delete(app.StartUpAppUIFigure)
+            if ~isempty(app.StartUpAppUIFigure) && isvalid(app.StartUpAppUIFigure)
+                delete(app.StartUpAppUIFigure)
+            end
         end
     end
 end

@@ -38,7 +38,7 @@ name: MATLAB CI and Pages
 # FOR YOUR OWN COURSEWARE:
 #   1. Copy buildfile.m and SoftwareTests/ structure to your repo
 #   2. Create SoftwareTests/CoursewareSmokeTests.m with your own test suite
-#      (reference: https://www.mathworks.com/help/matlab/matlab_prog/write-simple-test-suite.html)
+#      (reference: https://www.mathworks.com/help/matlab/matlab_prog/create-simple-test-suites.html)
 #   3. Update .github/workflows/ci.yml with your product list and release matrix
 #   4. Push to your release branch and monitor GitHub Actions
 #
@@ -76,7 +76,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        Releases: [R2025b, R2026a]
+        Releases: [R2026a, R2026b]
     runs-on: ubuntu-latest
     env:
       MATLAB_PRODUCTS: Symbolic_Math_Toolbox

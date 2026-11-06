@@ -2,7 +2,7 @@
 # <span style="color:rgb(213,80,0)">Fourier Analysis</span>
 
 
-[![View on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/106725-fourier-analysis) or [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=README.mlx)
+[![View on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/106725-fourier-analysis) or [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=README.m)
 
 [![MATLAB Versions Tested](https://img.shields.io/endpoint?url=https://mathworks-teaching-resources.github.io/Fourier-Analysis/TestedWith.json)](https://MathWorks-Teaching-Resources.github.io/Fourier-Analysis)
 
@@ -32,14 +32,17 @@ This module assumes minimal MATLAB knowledge required for these scripts, but you
 
 
 ## Getting Started
+
+For MATLAB R2024b or older, download the [legacy MLX version](https://github.com/MathWorks-Teaching-Resources/Fourier-Analysis/releases/tag/mlx).
+
 ### Accessing the Module
 ### **On MATLAB Online:**
 
-Use the [<img src="Images/image_1.png" width="136" alt="image_1.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=README.mlx) link to download the module. You will be prompted to log in or create a MathWorks account. The project will be loaded, and you will see an app with several navigation options to get you started.
+Use the [<img src="Images/image_1.png" width="136" alt="image_1.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=README.m) link to download the module. You will be prompted to log in or create a MathWorks account. The project will be loaded, and you will see an app with several navigation options to get you started.
 
 ### **On Desktop:**
 
-Download or clone this repository. Open MATLAB, navigate to the folder containing these scripts and double\-click on [fourier\-analysis.prj](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=README.mlx). It will add the appropriate files to your MATLAB path and open an app that asks you where you would like to start. 
+Download or clone this repository. Open MATLAB, navigate to the folder containing these scripts and double\-click on [fourier\-analysis.prj](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=README.m). It will add the appropriate files to your MATLAB path and open an app that asks you where you would like to start. 
 
 
 Ensure you have all the required products (listed below) installed. If you need to include a product, add it using the Add\-On Explorer. To install an add\-on, go to the **Home** tab and select  <img src="Images/image_2.png" width="16" alt="image_2.png"> **Add-Ons** > **Get Add-Ons**. 
@@ -51,38 +54,38 @@ MATLAB®, Symbolic Math Toolbox™
 
 
 # Scripts
-## [**FourierSeries.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/FourierSeries.mlx)
+## [**FourierSeries.m**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/FourierSeries.m)
 |      |      |      |
 | :-- | :-- | :-- |
 |  | **In this script, students will...** <br>  | **Lab Assignments** <br>   |
-| <img src="Images/FourierSeriesCover2.png" width="267" alt="FourierSeriesCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab1\_FourierSeries.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab1_FourierSeries.mlx) <br>   |
+| <img src="Images/FourierSeriesCover2.png" width="267" alt="FourierSeriesCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab1\_FourierSeries.m](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab1_FourierSeries.m) <br>   |
 |      |      |       |
 
-## [**ComplexFourierSeries.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/ComplexFourierSeries.mlx)
+## [**ComplexFourierSeries.m**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/ComplexFourierSeries.m)
 |      |      |      |
 | :-- | :-- | :-- |
 |  | **In this script, students will...** <br>  | **Lab Assignments** <br>   |
-| <img src="Images/ComplexSeriesCover2.png" width="267" alt="ComplexSeriesCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab2\_ComplexFourierSeries.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab2_ComplexFourierSeries.mlx) <br>   |
+| <img src="Images/ComplexSeriesCover2.png" width="267" alt="ComplexSeriesCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab2\_ComplexFourierSeries.m](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab2_ComplexFourierSeries.m) <br>   |
 |      |      |       |
 
-## [**FourierTransform.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/FourierTransform.mlx)
+## [**FourierTransform.m**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/FourierTransform.m)
 |      |      |      |
 | :-- | :-- | :-- |
 |  | **In this script, students will...** <br>  | **Lab Assignments** <br>   |
-| <img src="Images/FourierTransformCover2.png" width="267" alt="FourierTransformCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab3\_FourierTransform.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab3_FourierTransform.mlx) <br>   |
+| <img src="Images/FourierTransformCover2.png" width="267" alt="FourierTransformCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab3\_FourierTransform.m](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab3_FourierTransform.m) <br>   |
 |      |      |       |
 
-## [**DiscreteFourierTransform.mlx**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/DiscreteFourierTransform.mlx)
+## [**DiscreteFourierTransform.m**](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/DiscreteFourierTransform.m)
 |      |      |      |
 | :-- | :-- | :-- |
 |  | **In this script, students will...** <br>  | **Lab Assignments** <br>   |
-| <img src="Images/DFTCover2.png" width="267" alt="DFTCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab4\_DFT.mlx](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab4_DFT.mlx) <br>   |
+| <img src="Images/DFTCover2.png" width="267" alt="DFTCover2.png"> <br>  | $\bullet$ Compare signals in the time and frequency domains. <br> $\bullet$ Analyze audio signals in the frequency domain. <br> $\bullet$ Visualize Fourier series modes. <br> $\bullet$ Describe how phase shift is represented in a Fourier series. <br> $\bullet$ Discuss magnitude and phase. <br>  | [Lab4\_DFT.m](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Scripts/Lab4_DFT.m) <br>   |
 |      |      |       |
 
 # Apps
 |      |      |      |      |
 | :-- | :-- | :-- | :-- |
-| [Sine and Cosine Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/SinCosSeries.mlapp;)  <br>  | [Fourier Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/InteractiveFourierSeries.mlapp;) <br>  |  [Magnitude and Phase app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/MagnitudePhase.mlapp;)  <br>  | [Complex Fourier Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/ComplexFourierSeriesApp.mlapp) <br>   |
+| [Sine and Cosine Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/SinCosSeries.mlapp)  <br>  | [Fourier Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/InteractiveFourierSeries.mlapp) <br>  |  [Magnitude and Phase app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/MagnitudePhase.mlapp)  <br>  | [Complex Fourier Series app](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/ComplexFourierSeriesApp.mlapp) <br>   |
 | [<img src="Images/image_7.png" width="186" alt="image_7.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/SinCosSeries.mlapp) <br>  | [<img src="Images/image_8.png" width="186" alt="image_8.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/InteractiveFourierSeries.mlapp) <br>  | [<img src="Images/image_9.png" width="186" alt="image_9.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/MagnitudePhase.mlapp) <br>  | [<img src="Images/image_10.png" width="185" alt="image_10.png">](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Fourier-Analysis&project=fourier-analysis.prj&file=Apps/ComplexFourierSeries.mlapp) <br>   |
 |      |      |      |       |
 
@@ -92,6 +95,6 @@ MATLAB®, Symbolic Math Toolbox™
 
 
 # Contribute 
-Looking for more? Find an issue? Have a suggestion? Please contact the [MathWorks Educator Content Development Team](mailto:onlineteaching@mathworks.com). If you want to contribute directly to this project, you can find information about how to do so in the [CONTRIBUTING.md](https://github.com/MathWorks-Teaching-Resources/fourier-analysis/blob/release/CONTRIBUTING.md) page on GitHub.
+Looking for more? Find an issue? Have a suggestion? Please contact the [MathWorks Educator Content Development Team](mailto:onlineteaching@mathworks.com). If you want to contribute directly to this project, you can find information about how to do so in the [CONTRIBUTING.md](https://github.com/MathWorks-Teaching-Resources/Fourier-Analysis/blob/release/CONTRIBUTING.md) page on GitHub.
 
 © Copyright 2021-2026 The MathWorks, Inc

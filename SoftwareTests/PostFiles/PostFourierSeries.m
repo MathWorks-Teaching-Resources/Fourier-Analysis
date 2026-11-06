@@ -1,3 +1,5 @@
-%  Post-run script for FourierSeries.mlx
+%  Post-run script for FourierSeries.m
 % ---- Post-run commands -----
  
+% <matlab:ShareFeedback Share your feedback>
+
