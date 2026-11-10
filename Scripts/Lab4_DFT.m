@@ -28,7 +28,7 @@
 % Write your code here
 
 
-%[text] If you're not sure how to perform these computations, review the examples in [`DiscreteFourierTransform.m`](<matlab: edit DiscreteFourierTransform.m>)`.`
+%[text] If you're not sure how to perform these computations, review the examples in [`DiscreteFourierTransform.m`](file:./DiscreteFourierTransform.m)`.`
 %%
 %[text] **5.** Plot the magnitude of the spectrum against the frequencies in Hz. 
 %[text] 1. Create a vector (called `freq`) of frequencies (in Hz) that correspond to the values stored in `mag`.
@@ -37,7 +37,7 @@
 % Write your code here
 
 
-%[text] If you're not sure how to create the frequency vector, review the examples in [`DiscreteFourierTransform.m`](<matlab: edit DiscreteFourierTransform.m>)`.`
+%[text] If you're not sure how to create the frequency vector, review the examples in [`DiscreteFourierTransform.m`](file:./DiscreteFourierTransform.m)`.`
 %%
 %[text] **6.** Examine the frequency plot. If correct, you should see three significant peaks located at 82.1, 164.4, and 246.5 Hz. 
 %%

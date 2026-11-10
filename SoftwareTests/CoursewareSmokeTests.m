@@ -71,7 +71,8 @@ classdef CoursewareSmokeTests < matlab.unittest.TestCase
             fixture = CurrentFolderFixture(testCase.Project{1}.RootFolder);
             testCase.applyFixture(fixture);
 
-            fileToRun = string(ScriptFile);
+            % An explicit folder prevents a same-named app from shadowing the script.
+            fileToRun = fullfile(testCase.Project{1}.RootFolder, "Scripts", string(ScriptFile));
             testCase.runScriptWithPrePostHooks(fileToRun);
         end
 
@@ -99,7 +100,8 @@ classdef CoursewareSmokeTests < matlab.unittest.TestCase
             testCase.applyFixture(rootFolderFixture);
 
             [~, fileName, fileExt] = fileparts(string(ScriptFile));
-            fileToRun = fileName + "Soln" + fileExt;
+            fileToRun = fullfile(testCase.Project{1}.RootFolder, ...
+                "InstructorResources", "Solutions", fileName + "Soln" + fileExt);
             testCase.runScriptWithPrePostHooks(fileToRun);
         end
 
